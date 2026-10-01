@@ -51,7 +51,7 @@ Updating this bundle follows MVskills releases. Importing changes from Matt into
 
 ## Skills catalog
 
-The catalog covers all 36 distributable skills in `skills/`. Each skill name links to
+The catalog covers all 37 distributable skills in `skills/`. Each skill name links to
 its instructions. **What it does** describes the outcome; **How it works** describes
 the procedure or rules; **When to use it** identifies the task that should trigger it.
 Matt's workflows coordinate development; custom profiles define technical execution.
@@ -68,6 +68,7 @@ Use the skills relevant to the task. An ordinary edit does not need every workfl
 
 | Skill | What it does | How it works | When to use it |
 | --- | --- | --- | --- |
+| [ask-mv](skills/ask-mv/SKILL.md) | Chooses skills and builds a task-specific workflow. | Uses the current artifacts, available skills and project profile to select phases, outputs and the next action. | The user or agent is unsure which skills to use or how to approach a task. |
 | [grill-me](skills/grill-me/SKILL.md) | Challenges an idea until the decisions are clear. | Invokes grilling for a focused interview before implementation. | Stress-testing a plan, feature or design. |
 | [grill-with-docs](skills/grill-with-docs/SKILL.md) | Clarifies a design and preserves domain decisions. | Combines grilling with domain modeling, recording terminology and significant tradeoffs. | Planning work whose terminology and decisions must survive the conversation. |
 | [grilling](skills/grilling/SKILL.md) | Resolves a decision tree with the user. | Asks rounds of questions whose prerequisites are settled, recommends answers and waits for decisions. | Conducting a detailed interview or supporting another planning skill. |
@@ -193,6 +194,11 @@ in the application Compose is an explicit alternative. The setup prepares and
 checks deployment artifacts; it does not deploy to a VPS without authorization.
 
 ## Example: from an empty folder to a full-stack feature
+
+If you are unsure where to start, invoke `ask-mv` with your task. It recommends
+the relevant phases and skills; the agent can also select it automatically when routing
+is uncertain. A request for a workflow produces guidance; an already authorized task
+continues through the selected steps.
 
 1. Install the bundle and run `setup-mvskills`.
 2. Choose tracking (including none), app paths, profile and whether auth is required.

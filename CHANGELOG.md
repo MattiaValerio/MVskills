@@ -1,5 +1,11 @@
 # mvskills
 
+## 1.3.0
+
+### Minor Changes
+
+- Add ask-mv to choose available skills and compose task-specific workflows, with automatic discovery and support for partial installations.
+
 ## 1.2.0
 
 ### Minor Changes

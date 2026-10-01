@@ -1,4 +1,5 @@
 {
+  "ask-mv": [],
   "nestjs-feature": [
     "nestjs-architecture",
     "nestjs-cli",
