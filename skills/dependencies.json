@@ -1,0 +1,9 @@
+{
+  "nestjs-feature": ["nestjs-architecture", "nestjs-cli"],
+  "tdd": ["codebase-design"],
+  "grill-me": ["grilling"],
+  "grill-with-docs": ["grilling", "domain-modeling"],
+  "implement": ["tdd", "code-review"],
+  "implement-spec": ["tdd", "code-review"],
+  "setup-mvskills": ["setup-matt-pocock-skills"]
+}

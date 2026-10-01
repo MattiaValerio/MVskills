@@ -1,0 +1,28 @@
+{
+  "name": "mvskills",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Agent skills for agentic development and engineering",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mattiavalerio/mvskills.git"
+  },
+  "author": {
+    "email": "mattiavalerio.dev@gmail.com",
+    "name": "Mattia Valerio",
+    "url": "https://mattiavalerio.dev"
+  },
+  "scripts": {
+    "changeset": "changeset",
+    "version": "changeset version && node scripts/sync-plugin-version.mjs",
+    "check-plugin-version": "node scripts/sync-plugin-version.mjs --check",
+    "check": "node scripts/check.mjs",
+    "skills:list": "pnpm dlx skills@latest add . --list"
+  },
+  "devDependencies": {
+    "@changesets/changelog-github": "^0.7.0",
+    "@changesets/cli": "^2.30.0"
+  },
+  "license": "MIT",
+  "packageManager": "pnpm@12.4.1"
+}
