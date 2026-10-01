@@ -11,7 +11,7 @@ Read docs/agents/stack.md when present and load routed skills for affected apps.
 Use the host's skill invocation mechanism; if no Skill tool exists read installed SKILL.md. Without subagents/worktrees execute the same stages sequentially, retaining separate Standards and Spec findings.
 
 For the full-stack mvskills profile load strict-typescript for every authored scope,
-react-vite for frontend, api-contracts for public endpoints/client changes, and
+react-architecture, react-feature and design-system for frontend, api-contracts for public endpoints/client changes, and
 docker-coolify for container/deployment changes. Pass routed entrypoints to workers.
 
 

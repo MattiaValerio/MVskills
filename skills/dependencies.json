@@ -1,12 +1,54 @@
 {
-  "nestjs-feature": ["nestjs-architecture", "nestjs-cli", "strict-typescript"],
-  "nestjs-architecture": ["strict-typescript"],
-  "react-vite": ["strict-typescript"],
-  "api-contracts": ["strict-typescript"],
-  "docker-coolify": ["strict-typescript"],
-  "tdd": ["codebase-design"],
-  "grill-me": ["grilling"],
-  "grill-with-docs": ["grilling", "domain-modeling"],
-  "implement": ["tdd", "code-review"],
-  "implement-spec": ["tdd", "code-review"]
+  "nestjs-feature": [
+    "nestjs-architecture",
+    "nestjs-cli",
+    "strict-typescript"
+  ],
+  "nestjs-architecture": [
+    "strict-typescript"
+  ],
+  "react-vite": [
+    "strict-typescript",
+    "react-architecture",
+    "design-system",
+    "api-contracts"
+  ],
+  "api-contracts": [
+    "strict-typescript"
+  ],
+  "docker-coolify": [
+    "strict-typescript"
+  ],
+  "tdd": [
+    "codebase-design"
+  ],
+  "grill-me": [
+    "grilling"
+  ],
+  "grill-with-docs": [
+    "grilling",
+    "domain-modeling"
+  ],
+  "implement": [
+    "tdd",
+    "code-review"
+  ],
+  "implement-spec": [
+    "tdd",
+    "code-review"
+  ],
+  "react-architecture": [
+    "strict-typescript",
+    "api-contracts",
+    "design-system"
+  ],
+  "react-feature": [
+    "react-architecture",
+    "design-system",
+    "api-contracts",
+    "strict-typescript"
+  ],
+  "design-system": [
+    "strict-typescript"
+  ]
 }

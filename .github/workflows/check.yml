@@ -26,4 +26,5 @@ jobs:
       - run: pnpm check
       - run: pnpm check:typing
       - run: pnpm check:aliases
+      - run: pnpm check:frontend
       - run: pnpm check:install

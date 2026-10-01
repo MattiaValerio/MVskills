@@ -10,5 +10,5 @@
     "allowImportingTsExtensions": true,
     "types": ["node"]
   },
-  "include": ["scripts/**/*.ts", "skills/nestjs-feature/scripts/**/*.ts"]
+  "include": ["scripts/**/*.ts", "skills/*/scripts/**/*.ts", "skills/*/assets/scripts/**/*.ts", "inprogress-skills/*/scripts/**/*.ts", "inprogress-skills/*/assets/scripts/**/*.ts"]
 }

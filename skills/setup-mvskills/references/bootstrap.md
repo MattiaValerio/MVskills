@@ -42,7 +42,7 @@ Add actual tests of readiness behavior, both success and unavailable database.
 
 ## Frontend and public API
 
-Load react-vite and api-contracts for the default full-stack profile. Generate a
+Load react-vite, react-architecture, design-system and api-contracts for the default full-stack profile. Generate a
 REST/OpenAPI schema and client, configure Vite's /api proxy, and build a minimal
 status page through the generated client and TanStack Query. Its API/database
 status and failure states demonstrate the connection, not fictional product UI.
@@ -50,9 +50,10 @@ status and failure states demonstrate the connection, not fictional product UI.
 Generation must work without starting HTTP or contacting PostgreSQL. Isolate the
 contract module/bootstrap from runtime infrastructure. Do not bootstrap the live
 application module and disguise a connection failure with dummy credentials.
-Verify HTTP responses against the schema in integration tests. Frontend-only
-projects may choose an external API; record and verify that contract instead of
-creating an unused backend.
+Verify HTTP responses against the schema in integration tests. Frontend-only projects agree and version a provisional OpenAPI contract for our
+backend, generate the client and use MSW for tests or an explicitly selected mock
+preview. Record real backend integration as pending. External services are accessed
+by our server, never directly by the browser.
 
 ## Local environment and commands
 

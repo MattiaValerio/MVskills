@@ -3,6 +3,11 @@ name: prototype
 description: Build a throwaway prototype to answer a design question. Use when the user wants to sanity-check whether a state model or logic feels right, or explore what a UI should look like.
 ---
 
+For UI prototypes in the mvskills frontend profile, load design-system and use its
+theme, semantic tokens and typography from the start. Prototype fidelity does not
+relax the selected visual conventions.
+
+
 # Prototype
 
 A prototype is **throwaway code that answers a question**. The question decides the shape.

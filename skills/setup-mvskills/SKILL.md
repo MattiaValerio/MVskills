@@ -38,7 +38,7 @@ Once this phase is complete, continue directly with technology profiles.
 
 Agree on full stack, backend only, frontend only, or adoption in an existing repo.
 Default full stack: pnpm/Turborepo monorepo, NestJS backend with Kysely/PostgreSQL,
-Vite/React frontend with TanStack Router/Query and Tailwind, REST/OpenAPI client,
+Vite/React frontend with TanStack Router/Query, Tailwind, shadcn/ui and MSW for tests, REST/OpenAPI client,
 Docker Compose deployment on a Coolify VPS. If SSR/SEO or another framework is
 required select a suitable alternative explicitly. Ask whether authentication is
 needed; choose and configure it only if requested. Additional infrastructure such
@@ -48,7 +48,9 @@ as Redis, queues, storage or email is introduced only for a concrete requirement
 | --- | --- |
 | All authored TypeScript, scripts and review | strict-typescript |
 | Backend architecture, scaffolding, features | nestjs-architecture, nestjs-cli, nestjs-feature |
-| Vite/React scaffold, UI and tests | react-vite |
+| Vite/React scaffold | react-vite |
+| Frontend architecture and feature implementation | react-architecture, react-feature |
+| Theme, tokens, typography and UI prototypes | design-system |
 | REST schema, generated client and contract checks | api-contracts |
 | Local infrastructure, images and Coolify Compose | docker-coolify |
 

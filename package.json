@@ -22,7 +22,8 @@
     "check:install": "tsx scripts/check-install.ts",
     "check:typing": "tsx scripts/check-typing.ts",
     "check:aliases": "tsx scripts/check-aliases.ts",
-    "skills:list": "pnpm dlx skills@latest add . --list"
+    "skills:list": "pnpm dlx skills@latest add . --list",
+    "check:frontend": "tsx scripts/check-frontend.ts"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.5.14",

@@ -41,3 +41,36 @@ remain requirements to exercise in generated projects. Templates and annotated
 NestJS examples now use app-local @/ imports.
 
 Without a Skill tool read installed SKILL.md. Without workers/worktrees perform stages sequentially and keep review axes separate. External/browser tasks require host capabilities; report unavailable capabilities accurately.
+
+## Frontend skill promotion (2026-10-01)
+
+Promoted react-architecture, react-feature and design-system, and updated react-vite.
+Draft entrypoints remain in inprogress-skills with metadata.internal: true. Canonical
+copies have no internal flag. Draft Markdown and executable TypeScript helpers are
+included in pnpm check. The Skills CLI lists 36 canonical skills; listing the draft
+source returns no skills (the CLI exits 1 for an empty source, an expected result).
+See [Skills CLI internal metadata](https://github.com/vercel-labs/skills#optional-fields).
+
+Validation performed locally on Windows:
+
+- pnpm check: strict compiler, noExplicitAny lint, entrypoints, references and dependency map.
+- pnpm check:frontend: semantic token acceptance; mixed token/numeric styling,
+  dynamic and indirect styling, palette utilities, arbitrary typography and CSS
+  literals rejected. This is a conservative lexical checker, not a CSS/TS parser;
+  it does not prove visual consistency, token existence or contrast.
+- pnpm check:install: additive installation and lock hashes for Codex/Claude Code,
+  including all new frontend skills and bundled assets/helpers.
+- Isolated .tmp/frontend-template fixture: typography and API-client examples
+  compile under strict/noUncheckedIndexedAccess/exactOptionalPropertyTypes with
+  React 19.3.0, @types/react 19.3.0, openapi-fetch 0.17.0 and Zod 4.6.5.
+  Actual wrapper execution passes JSON success, bodyless success, missing JSON body
+  and typed HTTP errors. No assertion is used to invent a successful body.
+- dependency-cruiser 18.4.0 with TypeScript 5.9.3: fixture accepts legitimate
+  feature API imports via @/, analyses 14 modules, and fails an introduced
+  cross-feature import with features-are-isolated. Compiler support must be checked
+  against the target application's actual TypeScript version.
+
+A complete generated frontend has not been exercised in a browser in this change.
+Router pending timing, MSW screen/mutation tests, production styling/contrast and
+live web-to-backend communication remain application acceptance checks. Package
+checks and the isolated fixtures do not establish those outcomes.

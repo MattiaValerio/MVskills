@@ -35,6 +35,17 @@ for (const dir of dirs) {
   names.add(dir.name);
   await walk(path.join(root, dir.name));
 }
+// Draft names may overlap canonical names; validate their entrypoints separately.
+const draftRoot = path.resolve('inprogress-skills');
+for (const dir of (await readdir(draftRoot, { withFileTypes: true })).filter((e) => e.isDirectory())) {
+  const file = path.join(draftRoot, dir.name, 'SKILL.md');
+  const source = await readFile(file, 'utf8');
+  const header = source.match(/^---\r?\n([\s\S]*?)\r?\n---/)?.[1];
+  if (!header || !/^description:\s*\S/m.test(header) || !new RegExp(`^name: ${dir.name}$`, 'm').test(header) || !/internal: true/.test(header)) {
+    errors.push(`${file}: draft requires valid frontmatter and metadata.internal: true`);
+  }
+  await walk(path.join(draftRoot, dir.name));
+}
 const deps: unknown = JSON.parse(await readFile(path.join(root, 'dependencies.json'), 'utf8'));
 if (typeof deps !== 'object' || deps === null || Array.isArray(deps)) throw new Error('Invalid dependency map');
 const dependencyEntries: [string, unknown][] = Object.entries(deps);

@@ -1,6 +1,8 @@
 ---
 name: react-vite
 description: Scaffold or reconcile Vite React apps in the mvskills frontend profile — project creation, tooling, env, /api proxy, providers and the initial status page. Use when creating a frontend app, adopting the profile in an existing one, or changing its build, dev server or test setup.
+metadata:
+  internal: true
 ---
 
 Read docs/agents/stack.md and load strict-typescript. Default: Vite, React, TypeScript,

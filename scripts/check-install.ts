@@ -40,9 +40,9 @@ for (const entry of Object.values(first.skills)) {
   assert.ok(entry.source);
   assert.match(entry.computedHash, /^[a-f0-9]{64}$/);
 }
-install(['nestjs-cli', 'strict-typescript', 'react-vite', 'api-contracts', 'docker-coolify']);
+install(['nestjs-cli', 'strict-typescript', 'react-vite', 'react-architecture', 'react-feature', 'design-system', 'api-contracts', 'docker-coolify']);
 const second = await lock();
-assert.deepEqual(Object.keys(second.skills).sort(), ['api-contracts', 'docker-coolify', 'implement', 'nestjs-cli', 'react-vite', 'setup-mvskills', 'strict-typescript']);
+assert.deepEqual(Object.keys(second.skills).sort(), ['api-contracts', 'design-system', 'docker-coolify', 'implement', 'nestjs-cli', 'react-architecture', 'react-feature', 'react-vite', 'setup-mvskills', 'strict-typescript']);
 assert.deepEqual(second.skills.implement, first.skills.implement);
 for (const agentDir of ['.agents', '.claude']) {
   const installedRoot = path.join(cwd, agentDir, 'skills');
@@ -52,5 +52,8 @@ for (const agentDir of ['.agents', '.claude']) {
   for (const resource of ['references/bootstrap.md', 'references/matt-setup/setup.md', 'references/matt-setup/issue-tracker-github.md']) {
     assert.equal(await readFile(path.join(installedRoot, 'setup-mvskills', resource), 'utf8'), await readFile(path.join(source, 'skills/setup-mvskills', resource), 'utf8'));
   }
+}
+for (const resource of ['design-system/assets/theme.css', 'design-system/assets/scripts/check-design-tokens.ts', 'react-feature/scripts/validate.ts', 'react-architecture/references/testing.md']) {
+  assert.equal(await readFile(path.join(cwd, '.agents/skills', resource), 'utf8'), await readFile(path.join(source, 'skills', resource), 'utf8'));
 }
 console.log(`PASS: lockfile creation, hashes, additive installation, full-stack skills and bundled setup references for Codex/Claude Code. Fixture: ${cwd}`);

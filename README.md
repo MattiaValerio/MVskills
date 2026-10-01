@@ -2,12 +2,18 @@
 
 Matt Pocock's engineering workflows plus custom technology profiles for a runnable
 application: pnpm/Turborepo, NestJS with Kysely/PostgreSQL, Vite/React with TanStack
-Router/Query and Tailwind, typed REST/OpenAPI clients, and Docker Compose for Coolify.
+Router/Query, Tailwind and shadcn/ui, typed REST/OpenAPI clients, and Docker Compose for Coolify.
 Auth and additional infrastructure are chosen only when the project needs them.
 
-## Install
+## Contents
 
-After publishing this repository on GitHub:
+- [Install and update](#install)
+- [Skills catalog](#skills-catalog)
+- [Application profile](#application-profile)
+- [Example workflow](#example-from-an-empty-folder-to-a-full-stack-feature)
+- [Maintenance and draft skills](#maintain)
+
+## Install
 
 ```sh
 pnpm dlx skills@latest add mattiavalerio/mvskills
@@ -43,56 +49,122 @@ pnpm dlx skills@latest update
 
 Updating this bundle follows MVskills releases. Importing changes from Matt into MVskills is a separate, reviewed maintenance step.
 
-## Why these skills exist
+## Skills catalog
 
-An application needs both a development process and technical conventions. Matt's skills provide discovery, planning, implementation and review. The custom skills add the selected technology profile without replacing that process. Install what you need; an ordinary edit does not require running every workflow.
+The catalog covers all 36 distributable skills in `skills/`. Each skill name links to
+its instructions. **What it does** describes the outcome; **How it works** describes
+the procedure or rules; **When to use it** identifies the task that should trigger it.
+Matt's workflows coordinate development; custom profiles define technical execution.
+Use the skills relevant to the task. An ordinary edit does not need every workflow.
 
-### Clarify what to build
+### Setup and extension
 
-Use [grill-me](skills/grill-me/SKILL.md) to challenge an idea before implementation. [grill-with-docs](skills/grill-with-docs/SKILL.md) adds persistent domain terminology and decisions. Both rely on [grilling](skills/grilling/SKILL.md), which works through the decisions in rounds.
+| Skill | What it does | How it works | When to use it |
+| --- | --- | --- | --- |
+| [setup-mvskills](skills/setup-mvskills/SKILL.md) | Creates or reconciles a runnable project. | Runs bundled Matt setup, selects profiles, scaffolds apps, env, contracts and deployment artifacts, then verifies them. | Starting a project or adopting MVskills in an existing repository. |
+| [extend-mvskills](skills/extend-mvskills/SKILL.md) | Adds a technology specialization to the bundle. | Defines scope, creates instructions/resources, registers routing and dependencies, and validates integration. | Adding a framework, tool or technology profile. |
 
-[domain-modeling](skills/domain-modeling/SKILL.md) maintains the glossary and architecture decisions. [research](skills/research/SKILL.md) gathers primary-source evidence. [prototype](skills/prototype/SKILL.md) explores a UI or state model through a disposable implementation. When a decision needs another person's input, [to-questionnaire](skills/to-questionnaire/SKILL.md) turns it into focused questions.
+### Discovery and decisions
 
-### Turn decisions into executable work
+| Skill | What it does | How it works | When to use it |
+| --- | --- | --- | --- |
+| [grill-me](skills/grill-me/SKILL.md) | Challenges an idea until the decisions are clear. | Invokes grilling for a focused interview before implementation. | Stress-testing a plan, feature or design. |
+| [grill-with-docs](skills/grill-with-docs/SKILL.md) | Clarifies a design and preserves domain decisions. | Combines grilling with domain modeling, recording terminology and significant tradeoffs. | Planning work whose terminology and decisions must survive the conversation. |
+| [grilling](skills/grilling/SKILL.md) | Resolves a decision tree with the user. | Asks rounds of questions whose prerequisites are settled, recommends answers and waits for decisions. | Conducting a detailed interview or supporting another planning skill. |
+| [domain-modeling](skills/domain-modeling/SKILL.md) | Maintains shared domain language and architectural decisions. | Challenges ambiguous terms, checks concrete scenarios and updates the glossary or justified ADRs. | Defining business concepts, editing a glossary or recording an architectural tradeoff. |
+| [research](skills/research/SKILL.md) | Produces findings backed by primary sources. | Delegates investigation and saves a Markdown report with source citations. | Verifying documentation, APIs or facts needed for a decision. |
+| [prototype](skills/prototype/SKILL.md) | Creates a disposable artifact to explore a design. | Builds a rough UI or state model for feedback; frontend prototypes retain the selected design system. | Testing how an interaction, layout or state model should behave. |
+| [to-questionnaire](skills/to-questionnaire/SKILL.md) | Turns unresolved decisions into questions for another person. | Organizes the missing answers into a focused questionnaire. | Getting stakeholder input outside the live conversation. |
 
-[to-spec](skills/to-spec/SKILL.md) captures agreed behavior as a specification. [to-tickets](skills/to-tickets/SKILL.md) splits it into work with explicit dependencies. [wayfinder](skills/wayfinder/SKILL.md) maps larger work before committing to implementation; [triage](skills/triage/SKILL.md) processes incoming requests using the configured tracker and labels.
+### Specifications and planning
 
-[setup-mvskills](skills/setup-mvskills/SKILL.md) configures the tracker, label vocabulary and domain documents using Matt's bundled procedure, then adds app-specific technology profiles, even before the apps exist.
+| Skill | What it does | How it works | When to use it |
+| --- | --- | --- | --- |
+| [to-spec](skills/to-spec/SKILL.md) | Captures agreed behavior as a specification. | Synthesizes the discussion and publishes to the selected destination when authorized. | Converting settled requirements into a reviewable specification. |
+| [to-tickets](skills/to-tickets/SKILL.md) | Splits a plan into implementable work. | Creates tracer-bullet tickets with explicit dependencies on the configured tracker. | Preparing a specification for implementation and coordination. |
+| [wayfinder](skills/wayfinder/SKILL.md) | Maps decisions for work larger than one session. | Creates a destination and decision frontier, then resolves tickets as the remaining questions become clear. | Exploring a large effort whose route is still uncertain. |
+| [triage](skills/triage/SKILL.md) | Prepares incoming issues and external PRs for development. | Categorizes, verifies and moves requests through configured triage roles, producing agent-ready briefs. | Processing a backlog or investigating incoming requests. |
 
-### Implement and verify behavior
+### Implementation and verification
 
-[implement](skills/implement/SKILL.md) carries out a piece of agreed work. [implement-spec](skills/implement-spec/SKILL.md) coordinates the ticket graph and integration. Both read the app profile and load the appropriate custom skills.
+| Skill | What it does | How it works | When to use it |
+| --- | --- | --- | --- |
+| [implement](skills/implement/SKILL.md) | Implements agreed work and reviews the result. | Loads app-specific rules, implements the spec or tickets, validates behavior and invokes code review. | Executing a bounded piece of specified work. |
+| [implement-spec](skills/implement-spec/SKILL.md) | Coordinates implementation of a complete specification. | Works through the dependency graph, integrates ticket branches and validates the combined result. | Delivering a multi-ticket specification with coordinated implementation. |
+| [tdd](skills/tdd/SKILL.md) | Develops behavior through tests first. | Repeats red, green and refactor at agreed observable seams. | Implementing a feature or fix when test-first development is selected. |
+| [diagnosing-bugs](skills/diagnosing-bugs/SKILL.md) | Finds the cause of a failure or regression. | Builds a reproducible feedback loop, tests hypotheses and narrows the cause with evidence. | Debugging incorrect behavior, exceptions or performance regressions. |
+| [code-review](skills/code-review/SKILL.md) | Reviews standards and specification compliance separately. | Compares changes against a fixed baseline and runs both review axes with the app profile. | Reviewing a branch, PR or work in progress against requirements. |
 
-[tdd](skills/tdd/SKILL.md) provides the red/green/refactor loop when selected. [diagnosing-bugs](skills/diagnosing-bugs/SKILL.md) investigates failures through evidence and hypotheses. [code-review](skills/code-review/SKILL.md) checks standards and specification separately; the Standards reviewer receives the selected app's conventions.
+### Architecture
 
-### Keep architecture understandable
+| Skill | What it does | How it works | When to use it |
+| --- | --- | --- | --- |
+| [codebase-design](skills/codebase-design/SKILL.md) | Provides a vocabulary for useful module boundaries. | Applies deep-module, interface and seam principles to design and testability decisions. | Designing interfaces, choosing boundaries or improving testability. |
+| [improve-codebase-architecture](skills/improve-codebase-architecture/SKILL.md) | Finds opportunities to improve existing module design. | Explores relevant code, presents a visual HTML report and discusses the selected opportunity. | Investigating architectural friction before choosing a refactor. |
 
-[codebase-design](skills/codebase-design/SKILL.md) provides the vocabulary for module boundaries and interfaces. [improve-codebase-architecture](skills/improve-codebase-architecture/SKILL.md) explores opportunities to improve those boundaries. Technical specializations make these general principles concrete for the chosen stack.
+### Backend: NestJS
 
-### Apply the NestJS profile
+| Skill | What it does | How it works | When to use it |
+| --- | --- | --- | --- |
+| [nestjs-architecture](skills/nestjs-architecture/SKILL.md) | Defines the NestJS backend architecture. | Applies vertical slices, domain/port/adapter boundaries, typed errors and Kysely persistence rules. | Writing, moving, refactoring or reviewing code in the selected NestJS profile. |
+| [nestjs-cli](skills/nestjs-cli/SKILL.md) | Scaffolds and operates NestJS through its CLI. | Uses pnpm and supported local CLI commands, then aligns generated files with workspace conventions. | Creating apps or Nest artifacts, building, running or upgrading NestJS. |
+| [nestjs-feature](skills/nestjs-feature/SKILL.md) | Implements a backend use case from framing to verification. | Connects domain, ports, entrypoints, use cases, Kysely adapters and tests; runs the validation helper. | Adding or changing an endpoint, use case, job or event handler. |
 
-The three NestJS skills have distinct responsibilities:
+### Frontend: React
 
-| Skill | Responsibility | When it applies |
-| --- | --- | --- |
-| [nestjs-architecture](skills/nestjs-architecture/SKILL.md) | Layer boundaries, vertical slices, errors and persistence conventions | Writing, refactoring or reviewing an app adopting the custom NestJS profile |
-| [nestjs-cli](skills/nestjs-cli/SKILL.md) | Scaffolding and generators through pnpm and the project-local CLI | Creating an app or generating NestJS artifacts |
-| [nestjs-feature](skills/nestjs-feature/SKILL.md) | Domain, ports, entrypoint, use case, adapters, wiring and checks | Implementing a feature in that profile |
+| Skill | What it does | How it works | When to use it |
+| --- | --- | --- | --- |
+| [react-vite](skills/react-vite/SKILL.md) | Scaffolds or reconciles the frontend application. | Configures Vite, typed routing, providers, env, API proxy, design system and initial connection tests. | Creating a frontend or changing its build, dev server or test setup. |
+| [react-architecture](skills/react-architecture/SKILL.md) | Defines frontend structure, navigation and data ownership. | Uses isolated feature folders, thin file routes, validated URL state and shared TanStack Query factories. | Writing, moving, refactoring or reviewing frontend files, routes and server state. |
+| [react-feature](skills/react-feature/SKILL.md) | Implements a screen or user flow against our API contract. | Frames the screen, checks endpoints, wires queries/mutations, builds UI states and runs tests and validation. | Adding or changing a page, form, interaction or frontend feature. |
+| [design-system](skills/design-system/SKILL.md) | Keeps the visual identity consistent across the application. | Centralizes theme tokens and typography, manages shadcn components and checks token usage and contrast. | Styling UI, adding components, changing themes or building UI prototypes. |
 
-The profile selects Kysely/PostgreSQL, neverthrow, nestjs-zod, Vitest and Biome. Existing apps with other choices retain their conventions unless you request a migration. Matt's workflows govern the process; NestJS skills govern technical execution. When TDD is selected, its test-first order takes precedence over the feature checklist.
+### Types, API contracts and deployment
 
-For official API facts, the skills start from the [NestJS documentation index](https://docs.nestjs.com/llms.txt); the [full documentation](https://docs.nestjs.com/llms-full.txt) is a fallback. Installed versions and supported CLI flags still need checking.
-Persistence guidance also uses the [Kysely index](https://kysely.dev/llms.txt) and
-[full documentation](https://kysely.dev/llms-full.txt). Kysely is a typed SQL query builder.
+| Skill | What it does | How it works | When to use it |
+| --- | --- | --- | --- |
+| [strict-typescript](skills/strict-typescript/SKILL.md) | Defines rigorous typing and app-root imports. | Enforces strict compiler checks, rejects authored any, validates unknown boundaries and configures @/ resolution. | Writing or reviewing application code, tests, migrations or TypeScript scripts. |
+| [api-contracts](skills/api-contracts/SKILL.md) | Maintains the public contract between our backend and frontend. | Exports OpenAPI offline, generates typed clients, checks drift and verifies HTTP response contracts. | Adding endpoints or connecting frontend/backend, including provisional contracts before backend implementation. |
+| [docker-coolify](skills/docker-coolify/SKILL.md) | Prepares local infrastructure and production deployment artifacts. | Configures PostgreSQL, container builds, Compose networking, /api routing, migrations and Coolify handover. | Setting up infrastructure, containers or an authorized Coolify deployment. |
 
-### Connect the full application
+### Delivery, learning and agent instructions
 
-| Skill | Responsibility |
-| --- | --- |
-| [strict-typescript](skills/strict-typescript/SKILL.md) | Strict compiler checks, no authored any, validated boundaries and TypeScript scripts |
-| [react-vite](skills/react-vite/SKILL.md) | React UI, typed routes/queries, Tailwind and real component tests |
-| [api-contracts](skills/api-contracts/SKILL.md) | REST/OpenAPI schemas, generated client, deterministic generation and drift checks |
-| [docker-coolify](skills/docker-coolify/SKILL.md) | Local PostgreSQL, production images, Compose routing and Coolify handover |
+| Skill | What it does | How it works | When to use it |
+| --- | --- | --- | --- |
+| [pr](skills/pr/SKILL.md) | Writes an evidence-based pull request description. | Uses a compact summary, before/after evidence and an assessment of reversibility and impact. | Preparing or updating a PR body. |
+| [handoff](skills/handoff/SKILL.md) | Preserves context for a fresh agent session. | Writes a temporary handoff with artifact pointers, remaining work and suggested skills. | Continuing work in another session or handing it to another agent. |
+| [retro](skills/retro/SKILL.md) | Identifies improvements to the agent environment. | Reviews session evidence for navigation, checks, standards and tooling problems, then ranks improvements. | Learning from a coding session or recurring agent mistakes. |
+| [teach](skills/teach/SKILL.md) | Supports learning across multiple sessions. | Builds focused lessons and reference materials around a mission, tracking learning progress. | Learning a concept or practical skill in the workspace. |
+| [wizard](skills/wizard/SKILL.md) | Guides a human through steps the agent cannot perform. | Generates a staged interactive Bash script for manual actions, value capture and confirmations. | Configuring dashboards, credentials or manual migration steps. |
+| [writing-for-agents](skills/writing-for-agents/SKILL.md) | Makes agent-facing instructions easier to follow. | Uses precise context pointers, progressive disclosure, completion criteria and pruning. | Writing skills, agent instructions or documents agents rely on. |
+
+## Application profile
+
+The default full-stack profile uses pnpm/Turborepo, NestJS with Kysely/PostgreSQL,
+neverthrow, nestjs-zod, Vitest and Biome; Vite/React with TanStack Router/Query,
+Tailwind CSS v4 and shadcn/ui; REST/OpenAPI contracts; Docker Compose on a Coolify VPS.
+Existing apps retain their conventions unless a migration is explicitly selected.
+SSR/SEO requirements can select another frontend profile. Auth and extra services
+are added for concrete requirements.
+
+### Frontend conventions
+
+`react-vite` owns scaffolding, `react-architecture` owns structure and data,
+`react-feature` owns implementation, and `design-system` owns visual conventions.
+The same rules reach implementers and Standards reviewers through the selected profile.
+TDD supplies test-first ordering when selected.
+
+The browser calls our backend exclusively. External API integration, credentials,
+validation and response adaptation belong on the server. MSW simulates our endpoints
+at the HTTP boundary in tests; normal development uses the real backend. Before the
+backend exists, an agreed provisional OpenAPI contract supports typed tests or an
+explicit mock preview, with live integration recorded as pending.
+
+Theme tokens and typography apply to production UI and disposable prototypes alike.
+Feature screens cover pending, empty, error and success states. Token, architecture,
+type and test checks complement browser verification and a real web-to-API smoke check.
+
+### Contracts, types, environment and hosting
 
 The default browser uses one origin: web on `/`, API on `/api`. Vite proxies that
 prefix during development; the production web container proxies it to the API.
@@ -120,12 +192,6 @@ The default production database is a separate Coolify resource. Putting PostgreS
 in the application Compose is an explicit alternative. The setup prepares and
 checks deployment artifacts; it does not deploy to a VPS without authorization.
 
-### Deliver, learn and continue
-
-[pr](skills/pr/SKILL.md) writes reviewable pull request descriptions. [handoff](skills/handoff/SKILL.md) preserves context for another session. [retro](skills/retro/SKILL.md) examines what happened during a session, and [teach](skills/teach/SKILL.md) supports structured learning in the workspace.
-
-[wizard](skills/wizard/SKILL.md) builds an interactive guide for steps a human must perform. [writing-for-agents](skills/writing-for-agents/SKILL.md) improves agent-facing instructions. [extend-mvskills](skills/extend-mvskills/SKILL.md) integrates new technology skills with setup, implementation, review and validation.
-
 ## Example: from an empty folder to a full-stack feature
 
 1. Install the bundle and run `setup-mvskills`.
@@ -134,7 +200,7 @@ checks deployment artifacts; it does not deploy to a VPS without authorization.
 4. Setup prepares local infrastructure explicitly and verifies apps, tests, database
    readiness and web/API communication. Missing tools/access leave specific checks pending.
 5. Use `grill-with-docs`, then `to-spec` and `to-tickets` when the feature needs that planning.
-6. Use `implement` or `implement-spec`. NestJS skills specialize implementation; TDD supplies test-first behavior when selected.
+6. Use `implement` or `implement-spec`. NestJS and React skills specialize implementation; TDD supplies test-first behavior when selected.
 7. Review against both the specification and app standards, then prepare the PR.
 
 Names above identify skills; invocation syntax depends on the agent. Hosts without a Skill tool read installed entrypoints. Hosts without parallel workers perform the stages sequentially. End-to-end behavioral verification is still pending; see validation notes below.
@@ -165,9 +231,19 @@ pnpm skills:list
 pnpm check:install
 pnpm check:typing
 pnpm check:aliases
+pnpm check:frontend
 ```
 
 Installer compatibility differs from verified agent behavior. No native plugin or npm publication is required. Upstream content is MIT licensed by Matt Pocock; see LICENSE. This is an independent customized distribution.
+
+### Draft skills and promotion
+
+`inprogress-skills/` holds drafts before promotion to `skills/`. Draft entrypoints carry
+[`metadata.internal: true`](https://github.com/vercel-labs/skills#optional-fields),
+which hides them from normal Skills CLI discovery. Drafts are validated independently;
+promotion removes the internal flag in the canonical copy. Promote instructions and
+resources together, then update setup routes, the dependency map, this catalog and a
+changeset. The tables above describe canonical skills, not unpublished drafts.
 
 ### Record a change
 

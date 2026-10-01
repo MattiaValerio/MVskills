@@ -17,6 +17,13 @@ endpoint. For nestjs-zod configure current Swagger integration and response DTOs
 explicitly; document generation must represent runtime validation/serialization.
 Keep readiness and error responses bounded; no credentials or database details.
 
+Browser requests target our server exclusively. External APIs are integrated in
+backend adapters, with credentials, validation and response mapping on the server.
+Before a backend exists, agree and commit a provisional OpenAPI contract, generate
+types and use contract-typed MSW tests or an explicit mock preview. Record live
+integration as pending; reconcile the provisional schema with runtime schemas when
+the backend is implemented. Normal development targets the real server.
+
 ## Deterministic generation
 
 Export OpenAPI with a TypeScript script and stable serialization. It must run without

@@ -9,7 +9,7 @@ Read docs/agents/stack.md when present and load routed skills for affected apps.
 
 Use the host's skill invocation mechanism; if no Skill tool exists read installed SKILL.md. Without subagents/worktrees execute the same stages sequentially, retaining separate Standards and Spec findings.
 
-Pass applicable strict-typescript, react-vite, api-contracts and docker-coolify
+Pass applicable strict-typescript, react-architecture, design-system, api-contracts and docker-coolify
 entrypoints to the Standards reviewer for projects adopting those profiles.
 Check contract drift, boundary validation and runtime wiring in addition to static
 types; tooling-enforced rules remain the responsibility of the project's checks.
