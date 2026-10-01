@@ -38,6 +38,8 @@ for (const dir of dirs) {
 // Draft names may overlap canonical names; validate their entrypoints separately.
 const draftRoot = path.resolve('inprogress-skills');
 for (const dir of (await readdir(draftRoot, { withFileTypes: true })).filter((e) => e.isDirectory())) {
+  const contents = await readdir(path.join(draftRoot, dir.name), { withFileTypes: true, recursive: true });
+  if (!contents.some((entry) => entry.isFile())) continue;
   const file = path.join(draftRoot, dir.name, 'SKILL.md');
   const source = await readFile(file, 'utf8');
   const header = source.match(/^---\r?\n([\s\S]*?)\r?\n---/)?.[1];

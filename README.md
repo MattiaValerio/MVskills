@@ -243,7 +243,9 @@ Installer compatibility differs from verified agent behavior. No native plugin o
 which hides them from normal Skills CLI discovery. Drafts are validated independently;
 promotion removes the internal flag in the canonical copy. Promote instructions and
 resources together, then update setup routes, the dependency map, this catalog and a
-changeset. The tables above describe canonical skills, not unpublished drafts.
+changeset. After release, remove the promoted draft from `inprogress-skills/`;
+keep only skills still in development there. The tables above describe canonical
+skills, not unpublished drafts.
 
 ### Record a change
 

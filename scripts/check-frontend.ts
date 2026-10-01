@@ -31,7 +31,7 @@ await writeFile(path.join(fixture, 'src/example.tsx'), '<p className="text-foreg
 await writeFile(path.join(fixture, 'src/styles/other.css'), '.example { color: red; }');
 assert.equal(spawnSync(process.execPath, [tsx, checker], { cwd: fixture }).status, 1);
 for (const name of ['design-system', 'react-feature', 'react-architecture', 'react-vite']) {
-  const draft = await readFile(path.join('inprogress-skills', name, 'SKILL.md'), 'utf8');
-  assert.match(draft, /metadata:\s*\n\s*internal: true/);
+  const canonical = await readFile(path.join('skills', name, 'SKILL.md'), 'utf8');
+  assert.doesNotMatch(canonical, /internal: true/);
 }
 console.log(`PASS: token checker accepts semantic styling and rejects mixed, dynamic and literal bypasses. Fixture: ${fixture}`);
