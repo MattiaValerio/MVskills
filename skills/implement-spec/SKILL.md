@@ -10,10 +10,18 @@ Read docs/agents/stack.md when present and load routed skills for affected apps.
 
 Use the host's skill invocation mechanism; if no Skill tool exists read installed SKILL.md. Without subagents/worktrees execute the same stages sequentially, retaining separate Standards and Spec findings.
 
+For the full-stack mvskills profile load strict-typescript for every authored scope,
+react-vite for frontend, api-contracts for public endpoints/client changes, and
+docker-coolify for container/deployment changes. Pass routed entrypoints to workers.
+
 
 You have been provided a spec. This spec should have tickets associated with it, describing how to implement the spec.
 
-The issue tracker should have been provided to you. If not, tell the user to run `/setup-matt-pocock-skills`.
+The issue tracker should have been provided to you. If not, tell the user to run `/setup-mvskills`.
+
+When tracking is explicitly disabled, implement user-provided specs/tickets without
+publishing or closing external issues. Report completion against the provided work;
+do not force a tracker, PR or local ticket directory into the workflow.
 
 The goal is the entire spec implemented on a single **integration branch**, with every ticket resolved the way the issue tracker closes work.
 

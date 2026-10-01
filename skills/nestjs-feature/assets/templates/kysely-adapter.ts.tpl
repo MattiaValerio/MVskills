@@ -3,11 +3,11 @@
 import { Inject, Injectable } from '@nestjs/common';
 import type { Kysely, Selectable } from 'kysely';
 import { ResultAsync, errAsync, okAsync } from 'neverthrow';
-import { KYSELY } from '../../../shared/infrastructure/database/database.module.js';
-import type { DB } from '../../../shared/infrastructure/database/db.generated.js';
-import { infraError } from '../../../shared/kernel/errors.js';
-import type { __Entity__, __Entity__Id } from '../domain/__entity__.js';
-import { __Entity__Repository } from '../ports/__entity__.repository.js';
+import { KYSELY } from '@/shared/infrastructure/database/database.module';
+import type { DB } from '@/shared/infrastructure/database/db.generated';
+import { infraError } from '@/shared/kernel/errors';
+import type { __Entity__, __Entity__Id } from '@/modules/__context__/domain/__entity__';
+import { __Entity__Repository } from '@/modules/__context__/ports/__entity__.repository';
 
 type Row = Selectable<DB['__table__']>;
 

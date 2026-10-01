@@ -105,5 +105,6 @@ pnpm biome check --write <the files listed as CREATE/UPDATE>
 - **Wrong file name suffix** → you used the wrong schematic; delete the file and regenerate
   (also remove its registration from the module).
 - **`Cannot find module '@nestjs/schematics'`** → `pnpm add -D @nestjs/schematics`.
-- **ESM import errors after generation** → in ESM projects the CLI should write `.js`
-  relative imports; if a module update lacks them, add them by hand and mention it.
+- **Alias errors after generation** → normalize generated app imports to @/src-root
+  paths without source extensions and verify the selected builder, watch runtime and
+  tests resolve them. TypeScript paths alone do not make native Node understand @/.

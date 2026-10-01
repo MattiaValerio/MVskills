@@ -3,15 +3,13 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { APP_INTERCEPTOR, APP_PIPE } from '@nestjs/core';
 import { ZodSerializerInterceptor, ZodValidationPipe } from 'nestjs-zod';
-import { validateEnv } from './shared/infrastructure/config/env.js';
-import { DatabaseModule } from './shared/infrastructure/database/database.module.js';
-import { OrdersModule } from './modules/orders/orders.module.js';
+import { validateEnv } from '@/shared/infrastructure/config/env';
+import { DatabaseModule } from '@/shared/infrastructure/database/database.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true, validate: validateEnv }),
     DatabaseModule,
-    OrdersModule,
   ],
   providers: [
     { provide: APP_PIPE, useClass: ZodValidationPipe },

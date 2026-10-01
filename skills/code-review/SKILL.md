@@ -9,6 +9,11 @@ Read docs/agents/stack.md when present and load routed skills for affected apps.
 
 Use the host's skill invocation mechanism; if no Skill tool exists read installed SKILL.md. Without subagents/worktrees execute the same stages sequentially, retaining separate Standards and Spec findings.
 
+Pass applicable strict-typescript, react-vite, api-contracts and docker-coolify
+entrypoints to the Standards reviewer for projects adopting those profiles.
+Check contract drift, boundary validation and runtime wiring in addition to static
+types; tooling-enforced rules remain the responsibility of the project's checks.
+
 
 Two-axis review of the diff between `HEAD` and a fixed point the user supplies:
 
@@ -17,7 +22,10 @@ Two-axis review of the diff between `HEAD` and a fixed point the user supplies:
 
 Both axes run as **parallel sub-agents** so they don't pollute each other's context, then this skill aggregates their findings.
 
-The issue tracker should have been provided to you. If `docs/agents/issue-tracker.md` is missing, tell the user to run `/setup-matt-pocock-skills`.
+The issue tracker should have been provided to you. If `docs/agents/issue-tracker.md` is missing, tell the user to run `/setup-mvskills`.
+
+An explicitly disabled tracker is valid. Use user-provided specs or existing
+documents; skip issue fetching and report unavailable spec evidence honestly.
 
 ## Process
 

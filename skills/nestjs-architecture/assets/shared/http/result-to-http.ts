@@ -1,6 +1,6 @@
 import { HttpException, Logger } from '@nestjs/common';
 import type { Result } from 'neverthrow';
-import type { InfrastructureError } from '../kernel/errors.js';
+import type { InfrastructureError } from '@/shared/kernel/errors';
 
 type TypedError = { readonly type: string };
 

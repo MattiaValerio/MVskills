@@ -17,6 +17,9 @@ workflow for adding a feature lives in the `nestjs-feature` skill.
 
 ## The mental model
 
+Load strict-typescript for authored code, scripts and review. For public HTTP DTOs,
+responses and frontend contracts load api-contracts when selected by the profile.
+
 A backend is a set of **bounded contexts** (`orders`, `billing`, `catalog`…). Each
 context is one Nest module. Inside a context, every use case is a **vertical slice**:
 one folder that holds everything specific to that use case (HTTP entry point, input
@@ -97,8 +100,9 @@ Dependencies point inwards. These rules are enforced by `dependency-cruiser`
   implementation that will never change (e.g. a clock in a CRUD app). Add it when you
   need to test against it or swap it.
 - **One use case = one class with one public `execute()` method.**
-- Follow the project's import style. In ESM projects (`"type": "module"`, NodeNext),
-  relative imports end in `.js`.
+- In the selected mvskills profile use extensionless @/ imports rooted at app src,
+  e.g. @/shared/kernel/errors. Follow strict-typescript's alias reference for build,
+  watch, test and runtime resolution. Preserve existing import styles until migrated.
 
 ## When to read the references
 

@@ -1,9 +1,12 @@
 {
-  "nestjs-feature": ["nestjs-architecture", "nestjs-cli"],
+  "nestjs-feature": ["nestjs-architecture", "nestjs-cli", "strict-typescript"],
+  "nestjs-architecture": ["strict-typescript"],
+  "react-vite": ["strict-typescript"],
+  "api-contracts": ["strict-typescript"],
+  "docker-coolify": ["strict-typescript"],
   "tdd": ["codebase-design"],
   "grill-me": ["grilling"],
   "grill-with-docs": ["grilling", "domain-modeling"],
   "implement": ["tdd", "code-review"],
-  "implement-spec": ["tdd", "code-review"],
-  "setup-mvskills": ["setup-matt-pocock-skills"]
+  "implement-spec": ["tdd", "code-review"]
 }

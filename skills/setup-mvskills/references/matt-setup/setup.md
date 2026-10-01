@@ -1,10 +1,7 @@
----
-name: setup-matt-pocock-skills
-description: "Configure this repo for the engineering skills: set up its issue tracker, triage label vocabulary, and domain doc layout. Run once before first use of the other engineering skills."
-disable-model-invocation: true
----
-
 # Setup Matt Pocock's Skills
+
+Bundled reference adapted from Matt Pocock's MIT-licensed setup. Follow it as phase
+one of setup-mvskills; return to that entrypoint for technology configuration.
 
 Scaffold the per-repo configuration that the engineering skills assume:
 
@@ -39,16 +36,25 @@ Lead each section with the recommended answer so the user can accept it in a wor
 
 > Explainer: The "issue tracker" is where issues live for this repo. Skills like `to-tickets`, `triage`, and `to-spec` read from and write to it. They need to know whether to call `gh issue create`, write a markdown file under `.scratch/`, or follow some other workflow you describe. Pick the place you actually track work for this repo.
 
-Default posture: these skills were designed for GitHub. If a `git remote` points at GitHub, propose that. If a `git remote` points at GitLab (`gitlab.com` or a self-hosted host), propose GitLab. Otherwise (or if the user prefers), offer:
+Recommend GitHub without requiring it. Offer the choices below, including no tracker.
+For GitHub ask for the URL or owner/repo and explain that private repositories are
+supported. The selection can differ from the code repository. Verify read access
+and record the explicit owner/repo. Preserve existing configured choices:
 
 - **GitHub**: issues live in the repo's GitHub Issues (uses the `gh` CLI)
 - **GitLab**: issues live in the repo's GitLab Issues (uses the [`glab`](https://gitlab.com/gitlab-org/cli) CLI)
 - **Local markdown**: issues live as files under `.scratch/<feature>/` in this repo (good for solo projects or repos without a remote)
 - **Other** (Jira, Linear, etc.): ask the user to describe the workflow in one paragraph; the skill will record it as freeform prose
+- **None**: explicitly disable issue/spec publishing; no external repository is needed.
+
+When no tracker is selected, record mode: none and publishing: disabled in the
+tracker document, skip Section B and do not create local tickets as a fallback.
+An explicitly disabled tracker is complete; a selected tracker awaiting access is
+pending. In that case continue independent setup and report the pending phase.
 
 Record the choice in `docs/agents/issue-tracker.md`. The GitHub and GitLab templates carry a "PRs as a request surface" flag, defaulted **off**. Leave it off and don't raise it: a user who wants external PRs in the triage queue can flip the flag in the file later.
 
-**Section B: Triage label vocabulary.** Skip this section entirely if the `triage` skill isn't installed (exploration told you), since an uninstalled skill needs no labels.
+**Section B: Triage label vocabulary.** Skip when tracking is disabled or triage is not installed.
 
 If it is installed, ask exactly one question:
 
@@ -115,6 +121,6 @@ For "other" issue trackers, write `docs/agents/issue-tracker.md` from scratch us
 
 Tell the user the setup is complete and which engineering skills will now read from these files. Mention they can edit `docs/agents/*.md` directly later; re-running this skill is only necessary if they want to switch issue trackers or restart from scratch.
 
-## mvskills technology profiles
+## Continue with technology profiles
 
-After issue/domain configuration, if setup-mvskills is available and stack.md is absent or needs reconciliation, invoke it or read its installed entrypoint. It supports planned apps before scaffolding. When invoked by setup-mvskills return to its caller instead of invoking it again.
+Return to phase two of setup-mvskills. This reference is not an independent skill.

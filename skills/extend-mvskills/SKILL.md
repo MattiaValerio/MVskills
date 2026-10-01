@@ -11,4 +11,4 @@ Create skills/<name>/SKILL.md with precise description, profile applicability, d
 
 Register routing in setup-mvskills and dependencies in skills/dependencies.json. Pass the same profile to implementers and Standards reviewers. Invoke using host mechanisms or read entrypoints. Without workers/worktrees perform stages sequentially, keeping review axes separate.
 
-Run pnpm check and installer discovery. Exercise a task in an isolated project and another with a different existing stack. Verify routing, checks and preservation of conventions. Record structural checks separately from agent execution in docs/validation.md. Document modified imported skills in docs/upstream.md.
+Run pnpm check, pnpm check:typing, installation smoke checks and discovery. Exercise a task in an isolated project and another with a different existing stack. Verify routing, checks and preservation of conventions. Record structural checks separately from agent execution in docs/validation.md. Document modified imported skills in docs/upstream.md. Reuse strict-typescript, api-contracts and deployment/frontend rules where applicable rather than duplicating them.

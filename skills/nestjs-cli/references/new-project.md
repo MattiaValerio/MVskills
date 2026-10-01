@@ -32,6 +32,10 @@ Read the output, then rerun without `--dry-run`. Notes:
 3. **Prettier**: remove `.prettierrc` and Prettier devDependencies if present.
 4. **TypeScript**: make `tsconfig.json` extend the shared base config of the repo if one
    exists; keep `experimentalDecorators` and `emitDecoratorMetadata` enabled.
+   Load strict-typescript; ensure tests/migrations/scripts are typechecked too.
+   Configure @/ to this app's src in its own tsconfig and all build/dev/test resolvers.
+   Test runtime value imports, not only type-only imports; paths alone do not rewrite
+   JavaScript. Read strict-typescript's import-aliases reference for the pipeline.
 5. **Remove the sample**: delete `app.controller.ts`, `app.service.ts` and their spec,
    and remove them from `app.module.ts`.
 6. **Scripts** — make sure these exist so Turborepo pipelines can call them:
@@ -56,7 +60,13 @@ Read the output, then rerun without `--dry-run`. Notes:
 
 Follow "Bootstrapping a new project" in the `nestjs-architecture` skill (shared kernel,
 http helpers, database module, dependency-cruiser config, app module), then create the
-first context with `pnpm exec nest g mo modules/<context> --no-spec`.
+first context only when a real use case requires it, using the module generator.
+Do not copy an example OrdersModule import into an app without that context.
+Create a local API .env and .env.example with validated DATABASE_URL/PORT, ignored
+local credentials and correct pnpm dev loading. Production uses injected variables.
+Use the setup bootstrap for explicit infra, migration and DB type generation.
+Add health/readiness handlers and actual tests so the skeleton has meaningful tests.
+Load api-contracts for selected REST contracts and offline schema export.
 
 ## 4. Verify
 
@@ -67,4 +77,6 @@ pnpm --filter @<scope>/<app-name> check:arch
 pnpm --filter @<scope>/<app-name> test
 ```
 
-All four must pass on the empty skeleton before any feature work starts.
+All four and build must pass. Also run pnpm dev from the workspace root and verify
+API startup and readiness against real PostgreSQL. No test files, absent .env or
+placeholder DB types are pending work, not an expected successful skeleton.

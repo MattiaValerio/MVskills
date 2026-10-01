@@ -2,6 +2,7 @@
   "name": "mvskills",
   "version": "1.0.0",
   "private": true,
+  "type": "module",
   "description": "Agent skills for agentic development and engineering",
   "repository": {
     "type": "git",
@@ -15,13 +16,22 @@
   "scripts": {
     "changeset": "changeset",
     "version": "changeset version",
-    "check": "node scripts/check.mjs",
-    "check:install": "node scripts/check-install.mjs",
+    "check": "pnpm typecheck && pnpm lint && tsx scripts/check.ts",
+    "typecheck": "tsc --noEmit",
+    "lint": "biome lint .",
+    "check:install": "tsx scripts/check-install.ts",
+    "check:typing": "tsx scripts/check-typing.ts",
+    "check:aliases": "tsx scripts/check-aliases.ts",
     "skills:list": "pnpm dlx skills@latest add . --list"
   },
   "devDependencies": {
+    "@biomejs/biome": "^2.5.14",
     "@changesets/changelog-github": "^0.7.0",
-    "@changesets/cli": "^2.30.0"
+    "@changesets/cli": "^2.30.0",
+    "@types/node": "^26.6.3",
+    "tsc-alias": "^1.9.5",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2"
   },
   "license": "MIT",
   "packageManager": "pnpm@12.4.1"

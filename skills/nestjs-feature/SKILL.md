@@ -27,6 +27,8 @@ Templates for every hand-written file are in `assets/templates/`. Placeholders:
 | `__table__` | DB table name | `orders` |
 
 Kebab placeholders are used in paths and routes, camel ones in identifiers.
+Templates use extensionless @/ imports; configure app-local src resolution using
+strict-typescript before generating a slice. Aliases preserve dependency rules.
 
 ## 1. Frame the use case
 
@@ -114,10 +116,12 @@ every new error variant (`http-errors.ts.tpl`). The compiler will tell you if on
 ## 10. Validate — non-negotiable
 
 ```bash
-node <path-to-this-skill>/scripts/validate.mjs <app-dir>
+pnpm exec tsx <path-to-this-skill>/scripts/validate.ts <app-dir>
 ```
 
 It runs typecheck, Biome, dependency-cruiser and Vitest. Fix and rerun until it's green.
+Install tsx as a project dev dependency when using this helper. Prefer an existing
+pnpm check command covering all stages. Bash remains for existing callers only.
 Don't report success with a red step, and don't weaken a rule (cast, `biome-ignore`,
 depcruise exception) to make it pass — if a rule seems wrong for this case, stop and
 explain to the user.
@@ -144,4 +148,4 @@ When this slice is one of several implemented concurrently in separate worktrees
 - Migrations: number them by timestamp, never by sequence, so branches don't collide.
 
 The integration agent then applies every "Wiring to apply" block in one commit and runs
-`validate.sh` once on the merged result.
+the TypeScript validation helper once on the merged result.

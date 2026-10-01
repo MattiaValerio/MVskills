@@ -1,4 +1,4 @@
-# Anatomy of a slice — annotated example
+# Anatomy of a slice â€” annotated example
 
 Context `orders`, feature `place-order`. Every file below is the reference shape; adapt
 names, keep structure.
@@ -7,7 +7,7 @@ names, keep structure.
 
 ```ts
 import { err, ok, type Result } from 'neverthrow';
-import type { OrderError } from './order.errors.js';
+import type { OrderError } from '@/modules/orders/domain/order.errors';
 
 export type OrderId = string & { readonly __brand: 'OrderId' };
 
@@ -66,9 +66,9 @@ export type OrderError =
 
 ```ts
 import type { ResultAsync } from 'neverthrow';
-import type { Order, OrderId } from '../domain/order.js';
-import type { OrderError } from '../domain/order.errors.js';
-import type { InfrastructureError } from '../../../shared/kernel/errors.js';
+import type { Order, OrderId } from '@/modules/orders/domain/order';
+import type { OrderError } from '@/modules/orders/domain/order.errors';
+import type { InfrastructureError } from '@/shared/kernel/errors';
 
 // Abstract class = TypeScript contract + Nest DI token. No Nest import needed.
 export abstract class OrderRepository {
@@ -108,11 +108,11 @@ export class PlaceOrderResponseDto extends createZodDto(PlaceOrderResponseSchema
 import { Injectable } from '@nestjs/common';
 import { randomUUID } from 'node:crypto';
 import type { ResultAsync } from 'neverthrow';
-import { placeOrder, type OrderId } from '../../domain/order.js';
-import type { OrderError } from '../../domain/order.errors.js';
-import { OrderRepository } from '../../ports/order.repository.js';
-import type { InfrastructureError } from '../../../../shared/kernel/errors.js';
-import type { PlaceOrderDto } from './place-order.dto.js';
+import { placeOrder, type OrderId } from '@/modules/orders/domain/order';
+import type { OrderError } from '@/modules/orders/domain/order.errors';
+import { OrderRepository } from '@/modules/orders/ports/order.repository';
+import type { InfrastructureError } from '@/shared/kernel/errors';
+import type { PlaceOrderDto } from '@/modules/orders/features/place-order/place-order.dto';
 
 export interface PlaceOrderOutput {
   orderId: string;
@@ -135,19 +135,19 @@ export class PlaceOrderUseCase {
 }
 ```
 
-Note: the use case imports the DTO *type* from its own slice. That is fine — it's the
+Note: the use case imports the DTO *type* from its own slice. That is fine â€” it's the
 slice's own input contract. It never imports `@nestjs/common` HTTP things (`HttpException`,
-`@Body`…), only `Injectable`.
+`@Body`â€¦), only `Injectable`.
 
 ## features/place-order/place-order.controller.ts
 
 ```ts
 import { Body, Controller, HttpCode, Post } from '@nestjs/common';
 import { ZodSerializerDto } from 'nestjs-zod';
-import { unwrapOrThrowHttp } from '../../../../shared/http/result-to-http.js';
-import { orderHttpErrors } from '../../orders.http-errors.js';
-import { PlaceOrderDto, PlaceOrderResponseDto } from './place-order.dto.js';
-import { PlaceOrderUseCase } from './place-order.use-case.js';
+import { unwrapOrThrowHttp } from '@/shared/http/result-to-http';
+import { orderHttpErrors } from '@/modules/orders/orders.http-errors';
+import { PlaceOrderDto, PlaceOrderResponseDto } from '@/modules/orders/features/place-order/place-order.dto';
+import { PlaceOrderUseCase } from '@/modules/orders/features/place-order/place-order.use-case';
 
 @Controller('orders')
 export class PlaceOrderController {
@@ -163,19 +163,19 @@ export class PlaceOrderController {
 ```
 
 One controller per slice, one handler method named `handle`. Several slices share the
-same route prefix (`'orders'`) — that is expected: the URL is a public concern, the folder
+same route prefix (`'orders'`) â€” that is expected: the URL is a public concern, the folder
 is an internal one.
 
 ## orders.module.ts
 
 ```ts
 import { Module } from '@nestjs/common';
-import { OrderRepository } from './ports/order.repository.js';
-import { KyselyOrderRepository } from './infrastructure/kysely-order.repository.js';
-import { PlaceOrderController } from './features/place-order/place-order.controller.js';
-import { PlaceOrderUseCase } from './features/place-order/place-order.use-case.js';
-import { CancelOrderController } from './features/cancel-order/cancel-order.controller.js';
-import { CancelOrderUseCase } from './features/cancel-order/cancel-order.use-case.js';
+import { OrderRepository } from '@/modules/orders/ports/order.repository';
+import { KyselyOrderRepository } from '@/modules/orders/infrastructure/kysely-order.repository';
+import { PlaceOrderController } from '@/modules/orders/features/place-order/place-order.controller';
+import { PlaceOrderUseCase } from '@/modules/orders/features/place-order/place-order.use-case';
+import { CancelOrderController } from '@/modules/orders/features/cancel-order/cancel-order.controller';
+import { CancelOrderUseCase } from '@/modules/orders/features/cancel-order/cancel-order.use-case';
 
 @Module({
   controllers: [PlaceOrderController, CancelOrderController],

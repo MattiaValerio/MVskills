@@ -2,6 +2,11 @@
 
 Issues and specs for this repo live as GitHub issues. Use the `gh` CLI for all operations.
 
+Tracking repository: `OWNER/REPO` (replace during setup with the selected repository).
+Always pass `--repo OWNER/REPO` to gh issue commands, including commands below.
+All issue API paths use repos/OWNER/REPO. Never infer the tracking destination from
+the code checkout's remote. Use --body-file for multiline issue/comment bodies.
+
 ## Conventions
 
 - **Create an issue**: `gh issue create --title "..." --body "..."`. Use a heredoc for multi-line bodies.
@@ -11,7 +16,11 @@ Issues and specs for this repo live as GitHub issues. Use the `gh` CLI for all o
 - **Apply / remove labels**: `gh issue edit <number> --add-label "..."` / `--remove-label "..."`
 - **Close**: `gh issue close <number> --comment "..."`
 
-Infer the repo from `git remote -v`; `gh` does this automatically when run inside a clone.
+Code repository: record its remote separately when available. Pull requests target
+the code repository, not automatically the tracking repository. Use full issue URLs
+in code PRs when repositories differ. Do not rely on bare #numbers or automatic
+cross-repository closure; explicitly verify and resolve tracking issues when the
+configured workflow authorizes completion.
 
 ## Pull requests as a triage surface
 

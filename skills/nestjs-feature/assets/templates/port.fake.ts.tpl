@@ -1,8 +1,8 @@
-// src/modules/__context__/ports/__entity__.repository.fake.ts — test-only in-memory implementation.
+// src/modules/__context__/ports/__entity__.repository.fake.ts â€” test-only in-memory implementation.
 // Keep it in sync with the port in the same change. Never import it from production code.
 import { errAsync, okAsync } from 'neverthrow';
-import type { __Entity__, __Entity__Id } from '../domain/__entity__.js';
-import { __Entity__Repository } from './__entity__.repository.js';
+import type { __Entity__, __Entity__Id } from '@/modules/__context__/domain/__entity__';
+import { __Entity__Repository } from '@/modules/__context__/ports/__entity__.repository';
 
 export class InMemory__Entity__Repository extends __Entity__Repository {
   readonly items = new Map<string, __Entity__>();

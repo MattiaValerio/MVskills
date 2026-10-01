@@ -1,9 +1,9 @@
 // src/modules/__context__/features/__feature__/__feature__.use-case.spec.ts
 // Plain Vitest, no Nest TestingModule: construct the use case with fakes.
 import { describe, expect, it } from 'vitest';
-import { InMemory__Entity__Repository } from '../../ports/__entity__.repository.fake.js';
-import type { __Feature__Dto } from './__feature__.dto.js';
-import { __Feature__UseCase } from './__feature__.use-case.js';
+import { InMemory__Entity__Repository } from '@/modules/__context__/ports/__entity__.repository.fake';
+import type { __Feature__Dto } from '@/modules/__context__/features/__feature__/__feature__.dto';
+import { __Feature__UseCase } from '@/modules/__context__/features/__feature__/__feature__.use-case';
 
 const validInput = (overrides: Partial<__Feature__Dto> = {}): __Feature__Dto => ({
   // ...valid defaults

@@ -8,7 +8,7 @@
 - `DB` types are generated, never hand-written: `kysely-codegen --out-file
   src/shared/infrastructure/database/db.generated.ts`. Regenerate after every migration.
 - Migrations live in `migrations/` at the project root and run through Kysely's
-  `Migrator` (or `kysely-ctl`). Never edit an applied migration — add a new one.
+  `Migrator` (or `kysely-ctl`). Never edit an applied migration â€” add a new one.
 
 ## Repository adapter shape
 
@@ -17,11 +17,11 @@
 import { Inject, Injectable } from '@nestjs/common';
 import type { Kysely, Selectable } from 'kysely';
 import { ResultAsync, errAsync, okAsync } from 'neverthrow';
-import { KYSELY } from '../../../shared/infrastructure/database/database.module.js';
-import type { DB, Orders } from '../../../shared/infrastructure/database/db.generated.js';
-import { infraError } from '../../../shared/kernel/errors.js';
-import type { Order, OrderId } from '../domain/order.js';
-import { OrderRepository } from '../ports/order.repository.js';
+import { KYSELY } from '@/shared/infrastructure/database/database.module';
+import type { DB, Orders } from '@/shared/infrastructure/database/db.generated';
+import { infraError } from '@/shared/kernel/errors';
+import type { Order, OrderId } from '@/modules/orders/domain/order';
+import { OrderRepository } from '@/modules/orders/ports/order.repository';
 
 @Injectable()
 export class KyselyOrderRepository extends OrderRepository {
@@ -71,10 +71,10 @@ For list/report endpoints, building full entities is waste. A slice may define i
 
 ```
 features/list-orders/
-├── list-orders.controller.ts
-├── list-orders.dto.ts
-├── list-orders.query.ts          # abstract class ListOrdersQuery (the port, slice-local)
-└── list-orders.use-case.ts
+â”œâ”€â”€ list-orders.controller.ts
+â”œâ”€â”€ list-orders.dto.ts
+â”œâ”€â”€ list-orders.query.ts          # abstract class ListOrdersQuery (the port, slice-local)
+â””â”€â”€ list-orders.use-case.ts
 infrastructure/kysely-list-orders.query.ts   # adapter
 ```
 
@@ -94,4 +94,13 @@ export abstract class UnitOfWork {
 
 Its Kysely adapter opens `db.transaction()`, and repositories accept an optional
 `TransactionContext` argument. Do **not** introduce this until a use case actually needs
-it — most slices write a single aggregate and don't.
+it â€” most slices write a single aggregate and don't.
+# Official documentation and bootstrap
+
+For Kysely API facts start from https://kysely.dev/llms.txt and fetch relevant pages;
+https://kysely.dev/llms-full.txt is a fallback searched by topic, not loaded wholesale.
+Use PostgreSQL in this profile. Match installed Kysely/pg/codegen versions.
+Migration and type generation are explicit commands with validated local .env
+loading. Generate DB types from the actual migrated database, including an empty
+domain schema; fabricated placeholder DB types are not verified. Kysely migration
+bookkeeping does not require adding fictional domain tables.

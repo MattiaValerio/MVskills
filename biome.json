@@ -1,0 +1,11 @@
+{
+	"$schema": "https://biomejs.dev/schemas/2.5.14/schema.json",
+	"files": {
+		"includes": ["scripts/**/*.ts", "skills/nestjs-feature/scripts/**/*.ts"]
+	},
+	"formatter": { "enabled": false },
+	"assist": { "enabled": false },
+	"linter": {
+		"rules": { "preset": "none", "suspicious": { "noExplicitAny": "error" } }
+	}
+}
