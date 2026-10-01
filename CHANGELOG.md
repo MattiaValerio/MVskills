@@ -1,5 +1,13 @@
 # mvskills
 
+## 1.2.0
+
+### Minor Changes
+
+- [`5dbce7e`](https://github.com/MattiaValerio/MVskills/commit/5dbce7ee2791ccf7b6de8dad91c303999ac2336b) Thanks [@MattiaValerio](https://github.com/MattiaValerio)! - Add frontend architecture, feature workflow and design-system skills; update React setup with shadcn/ui, typed HTTP-boundary tests and server-only external integrations. Fix alias examples, bodyless API response guidance, pending-state testing and token validation.
+
+  Document all 36 skills in a consistent README catalog with purpose, procedure and usage guidance. Validate internal drafts separately and hide them from normal installation discovery.
+
 ## 1.1.0
 
 ### Minor Changes
