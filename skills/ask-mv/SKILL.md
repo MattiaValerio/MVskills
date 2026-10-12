@@ -15,7 +15,7 @@ Ask a focused question only when the answer changes the route: for example, whet
 
 ## Select the route
 
-Consult the host's available skill names and descriptions. The map below describes this bundle's capabilities, not a guarantee that every skill is installed. Read selected entrypoints through the host's supported mechanism before relying on their procedures. Respect explicit-only invocation policies: present those skills as user-invoked steps unless the host permits loading them as references within authorized work.
+Consult the host's available skill names and descriptions. The map below describes this bundle's capabilities, not a guarantee that every skill is installed. Read selected entrypoints through the host's supported mechanism before stating what a skill does or recommending that its steps be skipped. Respect explicit-only invocation policies: present those skills as user-invoked steps unless the host permits loading them as references within authorized work.
 
 | Starting situation | Useful route and branching condition |
 | --- | --- |
@@ -24,7 +24,7 @@ Consult the host's available skill names and descriptions. The map below describ
 | Large effort whose decisions cannot yet be enumerated | wayfinder, then to-spec once the route is clear. |
 | Settled requirements | to-spec when a durable specification helps; to-tickets when work needs separate units and dependencies. A bounded task can proceed directly to implementation. |
 | Spec or ready tickets | implement for bounded work; implement-spec for a coordinated multi-ticket specification when its execution model is supported and authorized. |
-| Broken behavior or performance regression | diagnosing-bugs, then the applicable implementation skills once evidence identifies the fix. |
+| Broken behavior or performance regression | diagnosing-bugs, then the applicable implementation skills once evidence identifies the fix. After the fix, retro can identify prevention measures; improve-codebase-architecture fits a missing regression-test seam. |
 | Incoming backlog or external requests | triage, then the route appropriate to each prepared item. |
 | Architectural friction | improve-codebase-architecture to find candidates; codebase-design to design a chosen boundary. Implement the selected change at the appropriate scope. |
 | Existing changes to assess | code-review against an explicit baseline and requirements. |

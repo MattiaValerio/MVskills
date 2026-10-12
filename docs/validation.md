@@ -74,3 +74,28 @@ A complete generated frontend has not been exercised in a browser in this change
 Router pending timing, MSW screen/mutation tests, production styling/contrast and
 live web-to-backend communication remain application acceptance checks. Package
 checks and the isolated fixtures do not establish those outcomes.
+
+## Matt Pocock upstream import (2026-10-12)
+
+Imported the changes recorded in [upstream](upstream.md), preserving the 37-skill
+catalog and historical installed copies/lockfiles. Validation passed on Windows:
+
+- pnpm check: strict typechecking, lint, all 37 entrypoints, references and dependencies.
+- pnpm skills:list: discovers all 37 canonical skills.
+- pnpm check:install: existing additive installation and lockfile smoke checks.
+- A separate clean installation of the 11 updated imported workflows plus ask-mv
+  to Codex/Claude Code: all 76 bundled file copies match the source bytes, including
+  the revised wizard template and embedded setup resources; exactly those 12 skills
+  appear in the fixture lockfile.
+- Git Bash bash -n on wizard/template.sh, plus isolated library execution: env
+  values with spaces, quotes, dollars, command-substitution text, backslashes and
+  empty values round-trip without interpolation; upserts retain unrelated entries
+  and avoid duplicate keys; Enter retains visible/secret defaults; EOF fails both
+  value prompts; a missing env file is created successfully.
+- All 25 original skill file inventories and normalized contents match the pinned
+  initial upstream baseline. Historical originals/lockfiles remain unchanged.
+- git diff --check: no whitespace errors.
+
+No real tracker labels, issues, PRs or CI secrets were created by these checks.
+Live tracker commands, wizard browser interaction, POSIX symlink/permission behavior
+and end-to-end agent execution of the revised workflows remain unverified.
