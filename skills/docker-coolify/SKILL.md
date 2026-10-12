@@ -3,7 +3,8 @@ name: docker-coolify
 description: Prepare and verify Docker images, local infrastructure and Coolify Compose deployment for mvskills applications. Use when scaffolding infrastructure, changing containers or deploying to a Coolify VPS.
 ---
 
-Read stack.md and load strict-typescript for automation. Default: Docker Compose
+Read docs/agents/stack.md and invoke strict-typescript for automation through the
+host mechanism, or read its installed entrypoint. Default: Docker Compose
 local PostgreSQL, app Compose in a Git-backed Coolify application, production
 PostgreSQL as a separate Coolify resource. A database-in-app-Compose variant is
 supported when explicitly selected. Setup prepares artifacts; live provisioning,
@@ -56,6 +57,19 @@ web→API→PostgreSQL with a test infrastructure resource. Report artifact vali
 separately from actual Coolify deployment. A deployment checklist records Git
 repository/branch or another chosen delivery method, Compose path, domain/TLS,
 variables, DB networking, migration command, health checks and backup/restore status.
+For dashboard or credential steps only the human can perform, invoke `wizard` via
+the host mechanism (or read its entrypoint) and derive the script from its bundled
+template. Keep the template's env/input helpers and run_wizard wrapper; author only
+the stages. Its write_env helper writes shell quoting. For dotenv/Compose consumers,
+use a separate private shell capture file as ENV_FILE and call a TypeScript exporter
+from the stages to write the application's env file in the chosen loader's grammar.
+Pass values through stdin rather than command arguments. Test round trips through
+the actual loader with quotes, spaces, dollars and backslashes, without evaluating
+values as shell code; preserve existing target entries and permissions. Remove the
+intermediate capture file after successful export. Retain deployment authorization
+and completion evidence in the handover. If `wizard` is not installed, report it and
+provide the manual steps directly, or leave wizard generation pending; do not invent
+a replacement library while claiming to use the template.
 No public GitHub repository is required. If no Git delivery is selected document
 the chosen manual/private registry procedure; avoid assuming webhook automation.
 

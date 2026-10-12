@@ -27,6 +27,8 @@ resolvers; cross-workspace imports use package exports, not another app's alias.
 - Write automation, configuration supported by its tool, and migrations in .ts.
   Use tsx for scripts when needed; preserve Nest decorator metadata with its actual
   compiler rather than running the Nest app through an incompatible transform.
+  Human-operated scripts generated from the `wizard` Bash template are an explicit
+  exception; any consumer-specific env exporter they call remains TypeScript.
 - JavaScript emitted by builds and dependency internals are not authored sources.
   Tool-required .cjs/.mjs configurations are narrow documented exceptions. Generated
   declarations must not be imported as a way to leak any into authored interfaces;
@@ -35,6 +37,10 @@ resolvers; cross-workspace imports use package exports, not another app's alias.
 Run tsc --noEmit for every authored scope and the lint rule locally and in CI.
 Verification must demonstrate failures for an explicit any and an implicit any in
 an isolated fixture, then success once removed. Do not weaken checks to pass.
+Compare the changed fixture against a pristine copy before trusting the failure;
+confirm the expected type/lint diagnostic, then restore it and rerun green. A missing
+tool or unrelated compilation error does not demonstrate that the rule caught the
+introduced violation.
 
 References: [TypeScript strict](https://www.typescriptlang.org/tsconfig/strict.html),
 [Biome noExplicitAny](https://biomejs.dev/linter/rules/no-explicit-any/).

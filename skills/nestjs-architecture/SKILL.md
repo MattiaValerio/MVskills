@@ -19,6 +19,9 @@ workflow for adding a feature lives in the `nestjs-feature` skill.
 
 Load strict-typescript for authored code, scripts and review. For public HTTP DTOs,
 responses and frontend contracts load api-contracts when selected by the profile.
+Use the host's skill tool for these loads, or read the installed entrypoints when it
+is unavailable. Repository standards and ADRs remain authoritative for the selected
+app; pass their paths along with this profile to Standards review.
 
 A backend is a set of **bounded contexts** (`orders`, `billing`, `catalog`…). Each
 context is one Nest module. Inside a context, every use case is a **vertical slice**:

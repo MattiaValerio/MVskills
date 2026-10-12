@@ -92,7 +92,7 @@ Use the skills relevant to the task. An ordinary edit does not need every workfl
 | --- | --- | --- | --- |
 | [implement](skills/implement/SKILL.md) | Implements agreed work and reviews the result. | Loads app-specific rules, implements the spec or tickets, validates behavior and invokes code review. | Executing a bounded piece of specified work. |
 | [implement-spec](skills/implement-spec/SKILL.md) | Coordinates implementation of a complete specification. | Works through the dependency graph, integrates ticket branches and validates the combined result. | Delivering a multi-ticket specification with coordinated implementation. |
-| [tdd](skills/tdd/SKILL.md) | Develops behavior through tests first. | Repeats red, green and refactor at agreed observable seams. | Implementing a feature or fix when test-first development is selected. |
+| [tdd](skills/tdd/SKILL.md) | Develops behavior through tests first. | Repeats red and green at agreed observable seams, with refactoring in review. | Implementing a feature or fix when test-first development is selected. |
 | [diagnosing-bugs](skills/diagnosing-bugs/SKILL.md) | Finds the cause of a failure or regression. | Builds a reproducible feedback loop, tests hypotheses and narrows the cause with evidence. | Debugging incorrect behavior, exceptions or performance regressions. |
 | [code-review](skills/code-review/SKILL.md) | Reviews standards and specification compliance separately. | Compares changes against a fixed baseline and runs both review axes with the app profile. | Reviewing a branch, PR or work in progress against requirements. |
 

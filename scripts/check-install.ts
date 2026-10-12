@@ -1,4 +1,4 @@
-import { mkdtemp, readFile } from 'node:fs/promises';
+import { mkdtemp, readFile, readdir } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import assert from 'node:assert/strict';
@@ -40,20 +40,33 @@ for (const entry of Object.values(first.skills)) {
   assert.ok(entry.source);
   assert.match(entry.computedHash, /^[a-f0-9]{64}$/);
 }
-install(['nestjs-cli', 'strict-typescript', 'react-vite', 'react-architecture', 'react-feature', 'design-system', 'api-contracts', 'docker-coolify']);
+const allNames = (await readdir(path.join(source, 'skills'), { withFileTypes: true }))
+  .filter((entry) => entry.isDirectory()).map((entry) => entry.name).sort();
+install(allNames.filter((name) => !(name in first.skills)));
 const second = await lock();
-assert.deepEqual(Object.keys(second.skills).sort(), ['api-contracts', 'design-system', 'docker-coolify', 'implement', 'nestjs-cli', 'react-architecture', 'react-feature', 'react-vite', 'setup-mvskills', 'strict-typescript']);
-assert.deepEqual(second.skills.implement, first.skills.implement);
+assert.deepEqual(Object.keys(second.skills).sort(), allNames);
+for (const [name, entry] of Object.entries(first.skills)) assert.deepEqual(second.skills[name], entry);
+for (const entry of Object.values(second.skills)) {
+  assert.equal(entry.sourceType, 'local');
+  assert.ok(entry.source);
+  assert.match(entry.computedHash, /^[a-f0-9]{64}$/);
+}
+
+async function compareTree(expected: string, actual: string): Promise<void> {
+  const entries = await readdir(expected, { withFileTypes: true });
+  assert.deepEqual((await readdir(actual)).sort(), entries.map((entry) => entry.name).sort(), actual);
+  for (const entry of entries) {
+    const original = path.join(expected, entry.name);
+    const installed = path.join(actual, entry.name);
+    if (entry.isDirectory()) await compareTree(original, installed);
+    else assert.deepEqual(await readFile(installed), await readFile(original), installed);
+  }
+}
+
 for (const agentDir of ['.agents', '.claude']) {
   const installedRoot = path.join(cwd, agentDir, 'skills');
   for (const name of Object.keys(second.skills)) {
-    assert.equal(await readFile(path.join(installedRoot, name, 'SKILL.md'), 'utf8'), await readFile(path.join(source, 'skills', name, 'SKILL.md'), 'utf8'));
-  }
-  for (const resource of ['references/bootstrap.md', 'references/matt-setup/setup.md', 'references/matt-setup/issue-tracker-github.md']) {
-    assert.equal(await readFile(path.join(installedRoot, 'setup-mvskills', resource), 'utf8'), await readFile(path.join(source, 'skills/setup-mvskills', resource), 'utf8'));
+    await compareTree(path.join(source, 'skills', name), path.join(installedRoot, name));
   }
 }
-for (const resource of ['design-system/assets/theme.css', 'design-system/assets/scripts/check-design-tokens.ts', 'react-feature/scripts/validate.ts', 'react-architecture/references/testing.md']) {
-  assert.equal(await readFile(path.join(cwd, '.agents/skills', resource), 'utf8'), await readFile(path.join(source, 'skills', resource), 'utf8'));
-}
-console.log(`PASS: lockfile creation, hashes, additive installation, full-stack skills and bundled setup references for Codex/Claude Code. Fixture: ${cwd}`);
+console.log(`PASS: lockfile creation, hashes, additive installation and all ${allNames.length} skills/resources for Codex/Claude Code. Fixture: ${cwd}`);

@@ -1,5 +1,6 @@
 // src/modules/__context__/features/__feature__/__feature__.use-case.spec.ts
 // Plain Vitest, no Nest TestingModule: construct the use case with fakes.
+// Use only when execute() is a selected test seam; add one behavior per TDD cycle.
 import { describe, expect, it } from 'vitest';
 import { InMemory__Entity__Repository } from '@/modules/__context__/ports/__entity__.repository.fake';
 import type { __Feature__Dto } from '@/modules/__context__/features/__feature__/__feature__.dto';
@@ -20,7 +21,7 @@ describe('__Feature__UseCase', () => {
     const { useCase } = setup();
     const result = await useCase.execute(validInput());
     expect(result.isOk()).toBe(true);
-    // assert on returned value and on repo state, not on calls
+    // assert returned values and later application behavior at the agreed seam
   });
 
   // One test per error variant the use case can return:

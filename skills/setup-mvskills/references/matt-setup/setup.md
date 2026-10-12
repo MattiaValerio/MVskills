@@ -72,6 +72,8 @@ Show the user a draft of:
 
 - The `## Agent skills` block to add to whichever of `CLAUDE.md` / `AGENTS.md` is being edited (see step 4 for selection rules)
 - The contents of `docs/agents/issue-tracker.md`, `docs/agents/domain.md`, and `docs/agents/triage-labels.md` (the last only when `triage` is installed)
+- When Section B ran on GitHub or GitLab, the missing labels to create and their
+  target tracking repository. Reuse the selected vocabulary and existing labels.
 
 Let them edit before writing.
 

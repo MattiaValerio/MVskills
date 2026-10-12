@@ -5,7 +5,7 @@ description: "Review the changes since a fixed point (commit, branch, tag, or me
 
 ## mvskills integration
 
-Read docs/agents/stack.md when present and load routed skills for affected apps. For the default NestJS profile, load nestjs-architecture for implementation and Standards review, nestjs-feature for feature work, and nestjs-cli for generators. Pass profile paths and skill entrypoints to workers. Matt's workflow owns orchestration; technical skills specialize execution. TDD, when selected, owns red/green/refactor ordering.
+Read docs/agents/stack.md when present and load routed skills for affected apps. For the default NestJS profile, load nestjs-architecture for implementation and Standards review, nestjs-feature for feature work, and nestjs-cli for generators. Pass profile paths and skill entrypoints to workers. Matt's workflow owns orchestration; technical skills specialize execution. TDD, when selected, owns seam agreement and red/green ordering; refactoring belongs to the review stage.
 
 Use the host's skill invocation mechanism; if no Skill tool exists read installed SKILL.md. Without subagents/worktrees execute the same stages sequentially, retaining separate Standards and Spec findings.
 
@@ -13,6 +13,9 @@ Pass applicable strict-typescript, react-architecture, design-system, api-contra
 entrypoints to the Standards reviewer for projects adopting those profiles.
 Check contract drift, boundary validation and runtime wiring in addition to static
 types; tooling-enforced rules remain the responsibility of the project's checks.
+Pass the selected profile entrypoints alongside every standards source discovered
+in step 3. Include agreed test seams and reported coverage limits for the reviewers;
+a fake-backed test must not be credited as proof of live wiring or persistence.
 
 
 Two-axis review of the diff between `HEAD` and a fixed point the user supplies:

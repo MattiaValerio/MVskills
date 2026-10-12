@@ -38,6 +38,11 @@ Attach technical skills to the relevant phase rather than adding a separate plan
 - Shared profile: strict-typescript for authored TypeScript; api-contracts for public API/client changes; docker-coolify for infrastructure and deployment artifacts.
 - Cross-cutting: domain-modeling for terminology and ADRs; tdd when test-first development is selected; wizard for steps only the human can perform.
 
+Carry the fetched ticket title/content, agreed seams and diagnosis evidence into the
+technical skill. Reuse established decisions and keep the final review with the
+coordinating workflow. For a direct feature-skill invocation, read its framing and
+conditional dependencies before execution; the routing table does not replace them.
+
 Follow the project's selected stack. For other technologies, use matching available skills or ordinary implementation with existing conventions. Load dependencies declared by the selected skill, including any dependency map accessible in the bundle. This guide has no mandatory dependency on every skill it can recommend.
 
 If a useful skill is unavailable, name the missing capability and either provide a concrete manual substitute or explain which step remains blocked. Installing skills, creating trackers, publishing artifacts and delegating work remain subject to the user's scope and host permissions. A route does not grant authorization for them.

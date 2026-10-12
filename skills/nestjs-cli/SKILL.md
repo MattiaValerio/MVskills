@@ -16,6 +16,8 @@ every artefact it knows how to generate. Hand-write only what it can't produce
 (use cases, ports, adapters, DTOs — see the `nestjs-feature` skill templates).
 Where files go is defined by the `nestjs-architecture` skill; this skill is about
 **how** to run the commands.
+Before generating or scaffolding, invoke `nestjs-architecture` through the host's
+skill mechanism, or read its installed entrypoint if the skill tool is unavailable.
 
 ## Ground rules
 

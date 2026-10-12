@@ -27,8 +27,12 @@ For GitHub record the selected repository. Follow the bundled
 GitHub template: all issue commands use --repo OWNER/REPO, API paths name that
 repository, and cross-repository references use full URLs. Code PRs belong to the
 code repository; tracking issues belong to the selected tracking repository. Setup
-records configuration and checks read access; creating repositories, labels or issues
-requires the relevant task authorization.
+records configuration and checks read access. When triage is installed and its label
+vocabulary is selected, include creation of missing labels in the setup draft; apply
+that approved plan through the bundled procedure to the chosen tracking repository.
+Reuse existing labels on reruns. Tracking disabled, triage absent or access pending
+skips label creation; pending access remains an explicit incomplete setup step.
+Creating repositories or issues requires the relevant task authorization.
 
 Domain glossary/ADRs and docs/agents configuration remain local documents. The
 GitHub preference concerns specs/issues/development tracking, not these documents.
@@ -37,6 +41,8 @@ Once this phase is complete, continue directly with technology profiles.
 ## 2. Select the smallest useful profile
 
 Agree on full stack, backend only, frontend only, or adoption in an existing repo.
+When proposing a choice, state the recommendation and phrase the question so yes
+accepts it; reuse choices already settled in the conversation or project profile.
 Default full stack: pnpm/Turborepo monorepo, NestJS backend with Kysely/PostgreSQL,
 Vite/React frontend with TanStack Router/Query, Tailwind, shadcn/ui and MSW for tests, REST/OpenAPI client,
 Docker Compose deployment on a Coolify VPS. If SSR/SEO or another framework is
@@ -75,6 +81,11 @@ evidence in docs/agents/stack.md. Distinguish planned, generated, locally verifi
 and deployment-artifacts-ready; deployed is a separate observed state. Persist
 shared contract, environment and deployment decisions in the same document.
 Reruns reconcile in place, preserving user choices and unrelated content.
+
+Record paths to existing project standards, including CODING_STANDARDS.md and
+CONTRIBUTING.md wherever present. Profiles supplement those sources; code-review
+must rediscover relevant standards at review time rather than treating stack.md as
+a complete or permanently current list.
 
 Add/update a pointer in existing agent instructions to read stack.md and load
 routed skills before scaffolding, implementation and review, including workers.

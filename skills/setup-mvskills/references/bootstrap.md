@@ -66,6 +66,11 @@ Choose and test one explicit .env loading mechanism; verify cwd assumptions for
 root pnpm dev, migration/generation scripts and tests. Production consumes runtime
 variables, not a required baked-in .env file.
 
+Serialize values for that chosen env loader: quotes, spaces, dollars and backslashes
+must round-trip literally without shell evaluation. On reruns preserve unrelated
+entries and existing file permissions; keep symlinks pointing to their existing
+target. Create secret-bearing files with restrictive permissions where supported.
+
 | Command | Responsibility |
 | --- | --- |
 | pnpm infra:up | Start selected local infrastructure and wait for readiness |
@@ -100,6 +105,9 @@ tests separate from offline contract export so generation remains infrastructure
 
 - Typecheck, lint, real tests and build pass; no handwritten any or suppressed checks.
 - Contract export/client generation works without DB/server; api:check detects drift.
+- When forcing a negative check, compare the isolated fixture with its pristine
+  copy before running it, then verify the expected diagnostic and restore the green
+  baseline. A failed setup command alone does not prove the intended check works.
 - Real PostgreSQL accepts migrations and generated types match it.
 - pnpm dev from root starts applicable apps using the generated env files; processes
   stop cleanly after the smoke check and do not start infrastructure themselves.

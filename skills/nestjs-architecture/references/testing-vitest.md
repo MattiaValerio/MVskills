@@ -2,17 +2,18 @@
 
 ## What to test at which level
 
-| Level | Target | Tooling | Speed |
+| Seam | Catches | Misses | Tooling |
 |---|---|---|---|
-| Unit — domain | factories, invariants, pure functions | plain Vitest, no Nest | ms |
-| Unit — use case | `execute()` against in-memory fakes of the ports | plain Vitest, `new UseCase(fake)` | ms |
-| Integration — adapter | Kysely repository against a real Postgres | Vitest + Testcontainers (or a test DB) | s |
-| E2E — slice | HTTP → controller → use case → fakes or real DB | `Test.createTestingModule` + `supertest` | s |
+| Domain public functions | Invariants and pure business rules | Orchestration, HTTP and persistence | Plain Vitest |
+| Use-case `execute()` with port fakes | Orchestration, returned Results and observable effects | Nest DI, HTTP mapping and real SQL | Plain Vitest, `new UseCase(fake)` |
+| Adapter with PostgreSQL | Queries, mapping, constraints and transactions | HTTP and full use-case wiring | Vitest + Testcontainers or test DB |
+| HTTP slice | Routing, validation, serialization, status and DI | Real SQL when adapters are replaced with fakes | Nest test module + supertest |
 
-Default for a new slice: **one use-case spec** covering the happy path and every error
-variant the use case can return. Add an e2e test when the slice has non-trivial HTTP
-behaviour (status codes, auth, serialisation). Add an adapter integration test when the
-query is more than a trivial select/insert.
+Use this table to propose seams for the slice. In TDD mode, load `tdd` and apply its
+seam agreement before writing tests; reuse decisions already made by the coordinator.
+A use-case spec is a useful starting proposal, not a mandatory extra layer when HTTP
+was selected. Cover happy paths and observable errors at selected seams; identify
+remaining risks such as SQL or serialization rather than claiming fakes prove them.
 
 ## Fakes, not mocks
 
@@ -30,7 +31,9 @@ export class InMemoryOrderRepository extends OrderRepository {
 }
 ```
 
-Assert on **state and returned Results**, not on "method X was called with Y".
+Assert on returned Results and behavior observed through application operations at
+the agreed seam. Avoid inspecting the fake or querying storage behind that seam;
+neither is part of the use-case interface.
 Use `vi.fn()` only for ports whose effect is a call to the outside world (email, queue),
 and even there prefer a fake that records sent items.
 
@@ -44,10 +47,11 @@ describe('PlaceOrderUseCase', () => {
   };
 
   it('stores the order and returns its id', async () => {
-    const { orders, useCase } = setup();
+    const { useCase } = setup();
     const result = await useCase.execute(validInput());
     expect(result.isOk()).toBe(true);
-    expect(orders.items.size).toBe(1);
+    // Assert the returned payload; verify persistence through an application query
+    // at the agreed seam using the returned id, rather than inspecting the fake.
   });
 
   it('fails with OrderHasNoLines when lines are empty', async () => {

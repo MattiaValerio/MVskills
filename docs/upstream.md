@@ -72,3 +72,45 @@ commit. The newly added chief-of-staff is experimental and is not imported. Exis
 upstream skills outside our selected bundle remain outside it. The MIT license is
 unchanged, and these updates introduce no package dependencies. See
 [validation](validation.md) for checks and behavioral limitations.
+
+## Custom integration audit after 1.3.1 (2026-10-12)
+
+The first import verified upstream files and retained existing integration blocks;
+it did not establish that every custom caller followed the updated workflows.
+This follow-up audits all 13 custom skills against the same pinned upstream commit,
+including their references/templates and the implement, implement-spec, code-review
+and wayfinder integration paths.
+
+| Custom skill | Adaptation or verified boundary |
+| --- | --- |
+| api-contracts | Explicit dependency loading; negative-fixture mutation evidence; HTTP seam coverage limits and conditional TDD fallback. |
+| ask-mv | Carry fetched ticket context, agreed seams and diagnosis evidence into custom execution; retain single coordinator-owned review. |
+| design-system | Explicit strict-typescript loading; distinguish lexical token checks from visual/contrast evidence and verify forced violations. |
+| docker-coolify | Reach the updated wizard for human-only steps; handle missing installations; export shell-captured values through a tested consumer-specific TypeScript adapter for dotenv/Compose. |
+| extend-mvskills | Require an audit of every custom caller on future imports, explain unchanged cases, and register dependency/ownership decisions. |
+| nestjs-architecture | Load dependencies explicitly; carry repo standards to review; document what each test seam catches and misses and avoid fake-storage assertions. |
+| nestjs-cli | Explicitly load architecture before generators; existing CLI/version rules and deferred module registration remain applicable. |
+| nestjs-feature | Fetch direct ticket references, reuse coordinator evidence, reach diagnosis/TDD/review conditionally, and select test templates only at agreed seams. |
+| react-architecture | Explicit dependency loading; testing reference distinguishes screen, mutation, component and pure-function coverage limits. |
+| react-feature | Fetch direct ticket references, reuse agreed seams/diagnosis, report conditional dependency gaps, and return evidence to the coordinator. |
+| react-vite | Load architecture/design instructions before scaffolding; align selected TDD with agreed seams while retaining the real API smoke check. |
+| setup-mvskills | Reconcile approved missing-label creation with no-tracker/triage-absent/access-pending cases; carry standards pointers, env round-trip rules and negative-check evidence. |
+| strict-typescript | Verify the intended mutation and diagnostic in negative fixtures; explicitly permit the human-operated Bash wizard while keeping exporters in TypeScript. |
+
+The prior custom red/green/refactor wording contradicted Matt's existing TDD rule:
+refactoring belongs to review. Coordinators, feature workflows and README now agree.
+Workers pass deferred wiring/shared changes to the integration stage; dependents are
+released only after those changes are applied and validated. Profile standards
+supplement the project's standards sources rather than replacing their discovery.
+
+The newly imported wayfinder label/type/push rules are adapted to the local tracker:
+Type and Status fields govern classification, claiming, frontier and resolution;
+research artifacts can stay local without a remote and never require a PR. GitLab
+ticket parentage has a textual fallback separate from blocking relationships.
+
+Grilling's recommendation convention is applied to setup choices. Handoff temporary
+paths and teach quiz/workspace rules have no custom implementations to reconcile;
+ask-mv reaches their imported entrypoints. No experimental skills are added.
+The mandatory dependency map adds nestjs-cli's architecture dependency and
+extend-mvskills' writing-for-agents dependency. Conditional workflows remain named
+at their branches with explicit missing-skill handling.

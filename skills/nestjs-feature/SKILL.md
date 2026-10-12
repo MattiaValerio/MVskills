@@ -17,6 +17,16 @@ SKILL.md before starting if they're not already loaded in this session:
 - `nestjs-architecture` — where things go and dependency rules
 - `nestjs-cli` — how to run generators
 
+Call the host's skill tool separately for each required skill, including
+`strict-typescript`; if the tool is unavailable, read each installed SKILL.md.
+Reuse entrypoints already loaded in this session. For a bug fix, load
+`diagnosing-bugs` before implementation unless the coordinating workflow has already
+provided its reproduction and diagnosis evidence.
+If a required skill or a selected conditional workflow (diagnosis, TDD or review)
+is not installed, report its name and the affected phase. Either state and execute
+a concrete manual substitute for that phase or leave it pending; reading a missing
+entrypoint and silently continuing is not a fallback.
+
 Templates for every hand-written file are in `assets/templates/`. Placeholders:
 
 | Placeholder | Case | Example |
@@ -31,6 +41,11 @@ Templates use extensionless @/ imports; configure app-local src resolution using
 strict-typescript before generating a slice. Aliases preserve dependency rules.
 
 ## 1. Frame the use case
+
+When given a ticket reference, read it through the configured tracker and state its
+title before writing the brief. Reuse fetched contents supplied by the coordinator;
+resolve ambiguous references with the user. An explicitly disabled tracker uses
+the supplied local spec or brief, without creating or fetching external issues.
 
 Before touching code, write a short slice brief (in your reply, or in the ticket if
 there is one):
@@ -59,7 +74,13 @@ expensive rework.
 
 ## Execution order
 
-Sections describe responsibilities, not mandatory test-last ordering. When TDD is selected, load tdd and build one behavior at a time: failing test, minimal implementation, passing test, refactor. Section 9 is coverage guidance; begin tests before implementation in TDD mode.
+Sections describe responsibilities, not mandatory test-last ordering. When TDD is
+selected, invoke `tdd` through the host mechanism (or read its entrypoint), reuse or
+agree the test seams, then build one behavior at a time through red and green.
+Use the testing reference to explain what proposed seams catch and miss. Refactoring
+belongs to the review stage. Section 9 supplies coverage candidates at the agreed
+seams, not an instruction to add every test layer. Begin tests before implementation
+in TDD mode. Pass agreed seams and diagnosis evidence to any worker.
 
 ## 3. Domain (only if the slice adds rules or types)
 
@@ -107,11 +128,12 @@ every new error variant (`http-errors.ts.tpl`). The compiler will tell you if on
 
 ## 9. Tests
 
-- `<feature>.use-case.spec.ts` from `use-case.spec.ts.tpl`: happy path + **one test per
-  error variant** the use case can return.
-- Domain tests for new factory/invariant logic.
-- E2E or adapter integration test only when the slice warrants it (see
-  `testing-vitest.md`).
+- At a selected use-case seam, use `use-case.spec.ts.tpl` to cover the happy path and
+  observable error variants with returned Results and subsequent public behavior.
+- Select domain, HTTP or adapter seams using the architecture skill's testing
+  reference. A template's availability does not select its seam.
+- For a regression, retain the real reproduction and red/green evidence from
+  `diagnosing-bugs`, including proof that any forced mutation landed.
 
 ## 10. Validate — non-negotiable
 
@@ -130,6 +152,11 @@ explain to the user.
 
 Finish with: slice brief (final), files created/modified, endpoint(s), error → status
 table, migrations added, anything deliberately deferred.
+Include the ticket title/source, selected seams and their coverage limits, and
+validation evidence. When `implement` or `implement-spec` coordinates the work,
+return these to it for the single final Standards/Spec review. Otherwise, when
+review is part of the task, invoke `code-review` with the baseline, brief and profile
+entrypoints; repository standards remain part of that review.
 
 ## Parallel / worktree mode
 

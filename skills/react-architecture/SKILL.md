@@ -10,6 +10,9 @@ default frontend profile (Vite, React, TanStack Router/Query, Tailwind, shadcn/u
 explicitly adopting it. Existing apps with other conventions keep them; this skill does
 not authorize migration. Load strict-typescript and api-contracts; visual rules live in
 design-system, the per-feature procedure in react-feature, scaffolding in react-vite.
+Invoke required skills through the host mechanism, or read their installed SKILL.md
+files when no skill tool exists. Load design-system before visual implementation or
+review; naming it here is not a substitute for reading its rules.
 
 For API facts start from https://tanstack.com/router/latest/llms.txt and
 https://tanstack.com/query/latest/llms.txt and fetch one linked Markdown page at a time

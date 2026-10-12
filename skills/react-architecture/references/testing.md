@@ -4,14 +4,17 @@ Vitest + React Testing Library + MSW. Mock at the HTTP boundary (MSW handlers ty
 the contract), never by mocking query hooks or the API client: the point is to exercise
 `unwrap`, keys, loaders and UI states together.
 
-| Level | Target | How |
-|---|---|---|
-| Component | feature component with props | render, assert visible text/roles |
-| Feature screen | route + loader + query + states | render the router at a URL with MSW |
-| Mutation flow | user action → request → invalidation → UI | user-event + MSW, assert final UI |
-| Pure logic | schemas, error mapping, formatters | plain Vitest |
+| Seam | Catches | Misses | How |
+|---|---|---|---|
+| Component with props | Visible rendering and local interaction | Routing, queries and live API | Render, assert roles |
+| Feature screen | Route, loader, query and UI states | Real proxy, backend and browser layout | Router at a URL with MSW |
+| Mutation flow | User action, request and refreshed UI | Real server persistence | user-event + MSW |
+| Public pure function | Schema or mapping behavior | Composed screen behavior | Plain Vitest |
 
-Every data-backed screen gets tests for **success, empty, API error and pending**
+In TDD mode, load `tdd` and apply its seam agreement before writing tests; reuse
+decisions from the coordinator. The table supplies candidates and coverage limits,
+not four mandatory layers. A selected data-backed screen seam covers **success,
+empty, API error and pending**
 (pending can be asserted by delaying the MSW handler). Query by role and accessible name
 (`getByRole('button', { name: /cancel/i })`), not by class names or test ids, unless no
 accessible handle exists.

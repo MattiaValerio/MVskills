@@ -1,5 +1,11 @@
 {
   "ask-mv": [],
+  "extend-mvskills": [
+    "writing-for-agents"
+  ],
+  "nestjs-cli": [
+    "nestjs-architecture"
+  ],
   "nestjs-feature": [
     "nestjs-architecture",
     "nestjs-cli",

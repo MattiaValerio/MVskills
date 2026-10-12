@@ -10,6 +10,8 @@ Read docs/agents/stack.md when present. Applies to apps in the default frontend 
 conventions and this skill does not authorize a migration. The selected design system also applies to throwaway
 UI prototypes: use its theme, tokens and typography from the start. Structure and data rules live
 in react-architecture.
+Before editing authored components or validation scripts, invoke strict-typescript
+through the host mechanism, or read its installed SKILL.md if the tool is unavailable.
 
 For facts start from https://ui.shadcn.com/llms.txt (theming, CLI, components.json, dark
 mode for Vite) and https://tailwindcss.com/docs/theme. `pnpm dlx shadcn@latest docs
@@ -103,3 +105,7 @@ dark mode, and contrast checked for every `<role>`/`<role>-foreground` pair (WCA
 A UI change is done when `pnpm check:tokens`, typecheck, lint and tests pass, no file
 other than `styles/theme.css` was needed to change colours or fonts, and new needs were
 solved with new tokens or component variants rather than literals.
+The token checker catches the lexical violations it recognizes; it does not prove
+token existence, contrast or rendered appearance. If validating the checker with a
+forced violation, diff the isolated fixture first and confirm the expected diagnostic
+before restoring it and rerunning green. Keep visual and contrast evidence separate.

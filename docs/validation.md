@@ -99,3 +99,26 @@ catalog and historical installed copies/lockfiles. Validation passed on Windows:
 No real tracker labels, issues, PRs or CI secrets were created by these checks.
 Live tracker commands, wizard browser interaction, POSIX symlink/permission behavior
 and end-to-end agent execution of the revised workflows remain unverified.
+
+## Custom workflow alignment after 1.3.1 (2026-10-12)
+
+The [custom integration audit](upstream.md#custom-integration-audit-after-131-2026-10-12)
+covers all 13 custom skills, their relevant references/templates and the imported
+coordinators. Two independent read-only reviews traced standards and requirements
+separately, including direct feature tickets, coordinator-owned TDD, diagnosis
+handoff, disabled/separate/local trackers, manual deployment and existing-stack
+preservation. They found missing selective-install fallbacks, inconsistent local
+claims and an unspecified shell-to-dotenv export boundary; all three were corrected
+and re-reviewed without remaining material findings.
+
+These were static workflow reviews, not executions of generated applications or
+live tracker/deployment operations. In particular, the consumer-specific env exporter
+is a procedure for a future generated wizard, not an implemented universal serializer;
+its actual-loader round-trip test remains a completion criterion for that task.
+
+Local checks: pnpm check and check:typing passed; discovery found 37 entrypoints.
+check:install now installs every canonical skill additively and compares every
+entrypoint, reference, asset and helper byte-for-byte in both Codex and Claude Code
+destinations, while checking exact lockfile membership and preservation of existing
+entries. This closes the prior installer smoke test's partial custom-skill coverage.
+The original installed snapshot and lockfiles remain historical and unchanged.

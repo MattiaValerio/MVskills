@@ -11,12 +11,30 @@ authorize migration. Before starting, load react-architecture (structure, routin
 design-system (theme, typography, shadcn), api-contracts and strict-typescript if they
 are not already loaded. Official docs: the llms.txt indexes named in those skills.
 
+Call the host's skill tool separately for those dependencies; if unavailable, read
+their installed SKILL.md files. For a bug fix, load `diagnosing-bugs` before
+implementation unless its reproduction and diagnosis evidence came from the
+coordinating workflow.
+If a required skill or a selected conditional workflow (diagnosis, TDD or review)
+is not installed, report its name and the affected phase. State and execute a
+concrete manual substitute or leave the phase pending; an unavailable entrypoint
+does not count as loaded.
+
 Sections describe responsibilities, not mandatory test-last ordering. When TDD is
-selected, load tdd and build one behavior at a time; section 8 then starts first.
+selected, invoke `tdd` through the host mechanism (or read its entrypoint), reuse or
+agree the test seams, and build one behavior at a time through red and green;
+section 8 then starts first. Explain proposed seams using the testing reference's
+coverage limits. Refactoring belongs to the review stage. Pass agreed seams and
+diagnosis evidence to any worker.
 
 # Adding a feature to the frontend
 
 ## 1. Frame the screen
+
+When given a ticket reference, read it through the configured tracker and state its
+title before writing the brief. Reuse fetched contents supplied by the coordinator;
+resolve ambiguous references with the user. With tracking explicitly disabled, use
+the supplied local spec or brief without creating or fetching external issues.
 
 Write a screen brief before touching code (reply or ticket):
 
@@ -87,9 +105,13 @@ Nothing else is registered by hand: the route tree is generated.
 
 ## 8. Tests
 
-With Vitest, Testing Library and MSW (react-architecture testing reference): for each
-screen, success, empty, API error and pending; for each mutation, the user flow through
-to the refreshed UI. Assert by role and accessible name.
+Use Vitest, Testing Library and MSW at selected seams (react-architecture testing
+reference). At a screen seam cover success, empty, API error and pending; at a
+mutation-flow seam cover the action through to the refreshed UI. Assert by role and
+accessible name. These are coverage candidates, not a requirement to add every test
+layer when TDD seams have already been agreed. For regressions, retain the real
+reproduction and red/green evidence from `diagnosing-bugs`, including proof that any
+forced mutation landed.
 
 ## 9. Validate — non-negotiable
 
@@ -106,6 +128,11 @@ depcruise exclusions; if a rule seems wrong for this case, stop and explain to t
 
 Screen brief (final), routes added/changed, files created/modified, shadcn components
 added, new tokens/variants (with reason), endpoints used, validation output, deferred items.
+Include the ticket title/source, selected seams and coverage limits. Return these
+to `implement` or `implement-spec` when it coordinates the work, so the final
+Standards/Spec review runs once. Otherwise, when review is part of the task, invoke
+`code-review` with the baseline, brief and profile entrypoints as well as repository
+standards.
 
 ## Parallel / worktree mode
 

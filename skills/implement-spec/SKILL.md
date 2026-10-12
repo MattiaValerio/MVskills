@@ -6,7 +6,7 @@ disable-model-invocation: true
 
 ## mvskills integration
 
-Read docs/agents/stack.md when present and load routed skills for affected apps. For the default NestJS profile, load nestjs-architecture for implementation and Standards review, nestjs-feature for feature work, and nestjs-cli for generators. Pass profile paths and skill entrypoints to workers. Matt's workflow owns orchestration; technical skills specialize execution. TDD, when selected, owns red/green/refactor ordering.
+Read docs/agents/stack.md when present and load routed skills for affected apps. For the default NestJS profile, load nestjs-architecture for implementation and Standards review, nestjs-feature for feature work, and nestjs-cli for generators. Pass profile paths and skill entrypoints to workers. Matt's workflow owns orchestration; technical skills specialize execution. TDD, when selected, owns seam agreement and red/green ordering; refactoring belongs to the review stage.
 
 Use the host's skill invocation mechanism; if no Skill tool exists read installed SKILL.md. Without subagents/worktrees execute the same stages sequentially, retaining separate Standards and Spec findings.
 
@@ -41,10 +41,18 @@ Communication to and from subagents should be sparse. Communicate primarily thro
 
 4. Use **implementer subagents** to implement each ticket, each in its own worktree on its own branch. Each implementer subagent:
    - confirms its worktree is based on the integration branch before starting, and resets onto it if not;
+   - receives the fetched ticket title/content, profile entrypoints, agreed seams
+     with coverage limits, and any reproduction/diagnosis evidence; states the ticket
+     title before implementing it and reuses decisions already made;
    - calls the Skill tool with `tdd` to build the ticket;
    - merges the integration branch tip into its own branch before reporting done
 
 5. Once an **implementer subagent** completes, merge its work to the integration branch with a **merger subagent**.
+
+   Apply custom feature reports' "Wiring to apply" and "Shared changes to apply",
+   regenerate derived files and validate the integrated behavior before marking the
+   ticket complete or releasing dependents onto the frontier. A worker's green tests
+   do not establish that deferred module wiring or shared UI changes work.
 
 6. If this changes the **frontier** of available tickets, kick off more **implementer subagents** to work on the new tickets. This allows for maximum concurrency.
 

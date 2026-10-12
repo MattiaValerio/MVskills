@@ -9,6 +9,8 @@ Library and MSW. Use pnpm and versions compatible with installed dependencies. E
 frontend choices are preserved; SSR/SEO requirements may require another selected profile.
 This skill owns the scaffold. Feature code follows react-architecture (structure, routes,
 data) and design-system (theme, typography, components); feature work uses react-feature.
+Before scaffolding, invoke react-architecture and design-system through the host's
+skill mechanism, or read their installed entrypoints if it has no skill tool.
 
 When scaffolding, use the official Vite React TypeScript template and current
 installation docs. Align its scripts/tsconfigs with the workspace; retain useful
@@ -34,6 +36,11 @@ Build the initial status page through the generated client with the same pattern
 features. Test its loading, ready and unavailable states with Vitest/Testing Library and
 MSW, plus a real web→API smoke check when both apps exist. An entirely mocked frontend
 test does not prove the proxy works.
+When TDD is selected, invoke `tdd` first and agree the seams using react-architecture's
+testing reference. Reuse existing seam decisions; distinguish the mocked screen
+evidence from the real connection smoke check in the report.
+If `tdd` is unavailable when selected, report that dependency and either agree an
+explicit manual test-first procedure or mark that phase pending.
 
 Public .env.example/.env values are documented and validated; browser env contains
 no backend secrets. Production static hosting must support SPA route fallback and

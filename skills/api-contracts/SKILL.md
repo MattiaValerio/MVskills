@@ -3,7 +3,8 @@ name: api-contracts
 description: Define and maintain REST OpenAPI contracts and generated typed clients for mvskills applications. Use when adding endpoints, connecting frontend/backend, or reviewing public API changes.
 ---
 
-Read stack.md and load strict-typescript. Default: NestJS REST/OpenAPI,
+Read docs/agents/stack.md and invoke strict-typescript through the host's skill
+mechanism, or read its installed entrypoint. Default: NestJS REST/OpenAPI,
 openapi-typescript for generated types and openapi-fetch for requests. In a full-stack
 workspace put committed schema and generated TypeScript in packages/api-client.
 Only public contracts are shared; Nest controllers, domain entities and Kysely DB
@@ -52,6 +53,15 @@ external data where necessary and test representative real HTTP success/error
 responses against the published schemas. Include a compile-time negative fixture
 showing invalid params/body/path fail. If auth is requested specify cookies vs bearer,
 credential propagation and CSRF/CORS behavior for the selected origin topology.
+
+For negative fixtures or a forced api:check drift failure, diff against the pristine
+fixture first to prove the intended mutation landed. Verify the expected contract
+or compiler failure, restore the fixture, and rerun green. HTTP contract tests catch
+schema/response mismatches; generated types alone miss runtime validation, routing
+and server behavior. In TDD work, load `tdd` and include those limits when agreeing
+the HTTP seam with the coordinating workflow.
+If `tdd` is unavailable when selected, report that dependency and either agree an
+explicit manual test-first procedure or mark that phase pending.
 
 Primary docs: [Nest OpenAPI](https://docs.nestjs.com/openapi/introduction),
 [openapi-typescript](https://openapi-ts.dev/introduction),
