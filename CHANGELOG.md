@@ -1,5 +1,16 @@
 # mvskills
 
+## 1.3.2
+
+### Patch Changes
+
+- [`a1cc0cf`](https://github.com/MattiaValerio/MVskills/commit/a1cc0cf28b0d1855b922cbfb7f77f40e98a8d326) Thanks [@MattiaValerio](https://github.com/MattiaValerio)! - Align custom profiles and their callers with the imported Matt Pocock workflows:
+  fetch ticket context, reuse agreed test seams with explicit coverage limits, retain
+  diagnosis evidence, and keep refactoring in review. Reconcile setup label creation,
+  negative-check evidence, env persistence and manual wizard handovers. Preserve local
+  wayfinding metadata and verify deferred integration work before releasing dependents.
+  Audit all 13 custom skills and install-test every bundled entrypoint and resource.
+
 ## 1.3.1
 
 ### Patch Changes
