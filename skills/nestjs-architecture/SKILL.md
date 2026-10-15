@@ -133,4 +133,8 @@ If `src/shared/` does not exist yet:
    Verify dependency-cruiser supports the installed TypeScript version and actually
    analyzes sources. The validation helper fails on zero analyzed modules or a missing
    TypeScript transpiler; resolve compatibility using current tool documentation.
+   Prove the rules bite: `check:arch` passes on the clean tree; a temporary import
+   from a slice into `infrastructure/` fails with `slices-do-not-import-infrastructure`;
+   after reverting it passes again. If the planted import does not fail, fix the config
+   or alias resolution before continuing. Leave no planted file behind.
 5. Generate DB types with `pnpm kysely-codegen --out-file src/shared/infrastructure/database/db.generated.ts`.

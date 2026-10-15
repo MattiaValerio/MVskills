@@ -114,3 +114,23 @@ ask-mv reaches their imported entrypoints. No experimental skills are added.
 The mandatory dependency map adds nestjs-cli's architecture dependency and
 extend-mvskills' writing-for-agents dependency. Conditional workflows remain named
 at their branches with explicit missing-skill handling.
+
+## Pending-branch import 2026-10-15
+
+Upstream `main` was still at `49dd158` with no newer tag. Two unmerged fixes were
+imported ahead of their merge; reconcile when they land on `main`:
+
+| Distribution skill | Upstream branch (commit) | Imported change |
+| --- | --- | --- |
+| tdd | `tdd-bug-red-reproduces` (`b4aa087`) | A bug's red test runs against existing code and fails on the wrong behaviour, not a missing symbol. |
+| grilling | `grilling-number-across-rounds` (`884378a`) | Number questions across the conversation; re-asked questions keep their number. |
+
+Custom skills reach these rules through the `tdd` and `grilling` entrypoints; no
+custom caller restates them.
+
+Upstream `setup-ts-deep-modules` (in-progress) was evaluated and not imported: its
+depth-based "root files are public" rule conflicts with the NestJS context layout
+(`public/`, `domain/`, `ports/` subfolders) and the React feature layout, which already
+have layered dependency-cruiser configs; workspace packages use `exports`. Its
+"prove the rules bite" step was adopted: nestjs-architecture, react-architecture and
+react-vite now require pass → planted violation fails with the named rule → pass.

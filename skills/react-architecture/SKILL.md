@@ -61,7 +61,10 @@ src/
 
 Enforced by dependency-cruiser ([config](assets/dependency-cruiser.cjs)); copy it to the
 app as `.dependency-cruiser.cjs` and add `"check:arch": "depcruise src --config
-.dependency-cruiser.cjs"`.
+.dependency-cruiser.cjs"`. After copying, prove the rules bite: `check:arch` passes on
+the clean tree; a temporary import from one feature into another fails with
+`features-are-isolated`; after reverting it passes again. A planted import that does not
+fail means the config or alias resolution is wrong; fix it before continuing.
 
 1. **Routes are entrypoints.** Nothing imports from `routes/` except the generated
    route tree. A route imports features and shared code.
