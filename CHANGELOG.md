@@ -1,5 +1,14 @@
 # mvskills
 
+## 1.3.3
+
+### Patch Changes
+
+- [`0ee5180`](https://github.com/MattiaValerio/MVskills/commit/0ee518069f96cdd53aed00f6b30b4d0fc284077f) Thanks [@MattiaValerio](https://github.com/MattiaValerio)! - Import two pending Matt Pocock fixes: a bug fix's red test must reproduce the bug
+  against existing code, and grilling numbers questions across the whole conversation.
+  NestJS and React profiles now prove their dependency-cruiser rules fail on a planted
+  violation during setup.
+
 ## 1.3.2
 
 ### Patch Changes
