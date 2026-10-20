@@ -1,5 +1,12 @@
 # mvskills
 
+## 1.4.0
+
+### Minor Changes
+
+- [`be7a899`](https://github.com/MattiaValerio/MVskills/commit/be7a8996414032fd1153b84263b3d439051d6727) Thanks [@MattiaValerio](https://github.com/MattiaValerio)! - Add cross-client UI/UX research with optional Mobbin MCP, consistent visual identity,
+  bounded fallback and frontend/prototype routing for Claude Code and Codex.
+
 ## 1.3.3
 
 ### Patch Changes
