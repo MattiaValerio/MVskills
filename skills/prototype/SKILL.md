@@ -7,6 +7,13 @@ For UI prototypes in the mvskills frontend profile, load design-system and use i
 theme, semantic tokens and typography from the start. Prototype fidelity does not
 relax the selected visual conventions.
 
+For new-screen/flow exploration or substantial UI redesigns, load ui-ux-research
+through the host mechanism or read its installed entrypoint before drafting variants;
+reuse existing research. If missing, report it and manually adapt local/supplied
+references while preserving the project's style. Mobbin availability is optional.
+For any UI stack, variants retain the established visual identity unless the user
+explicitly requests another style; structural alternatives alone do not authorize it.
+
 
 # Prototype
 

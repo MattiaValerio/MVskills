@@ -1,5 +1,21 @@
 # Upstream maintenance
 
+## Optional UI/UX research integration (2026-10-20)
+
+Added the custom ui-ux-research skill and optional Mobbin connection guidance for
+Claude Code and Codex. react-feature routes new-screen/flow and redesign research;
+design-system owns applying the selected direction; react-vite reuses that path.
+setup-mvskills, ask-mv and the dependency map expose the capability. Server access
+remains optional and runtime-discovered rather than an application dependency.
+
+Adapted imported prototype/SKILL.md and UI.md to research before relevant variants
+and keep established visual identity unless the user explicitly requests a style
+change. Adapted code-review's integration block to assess recorded research/style
+decisions without requiring a live Mobbin search. implement and implement-spec need
+no routing changes: their existing react-feature/design-system dispatch reaches the
+new phase, and react-feature returns the note to its coordinator. Historical upstream
+snapshots and installation lockfiles remain unchanged.
+
 Source: https://github.com/mattpocock/skills. The 25 imported skills were installed before packaging. Original paths/hashes are in [upstream/installed-skills-lock.json](upstream/installed-skills-lock.json).
 
 On 2026-10-12 every file in those 25 original skill directories was compared with

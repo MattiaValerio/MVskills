@@ -17,6 +17,11 @@ Pass the selected profile entrypoints alongside every standards source discovere
 in step 3. Include agreed test seams and reported coverage limits for the reviewers;
 a fake-backed test must not be credited as proof of live wiring or persistence.
 
+For UI changes, include any ui-ux-research note and the user's style decisions.
+Check that adaptations preserve the established visual identity unless a different
+style was explicitly requested. Review the recorded research/fallback evidence;
+Mobbin availability is optional and review alone does not require a new search.
+
 
 Two-axis review of the diff between `HEAD` and a fixed point the user supplies:
 

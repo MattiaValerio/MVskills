@@ -35,6 +35,7 @@ Attach technical skills to the relevant phase rather than adding a separate plan
 
 - NestJS: nestjs-architecture for backend changes/review, nestjs-feature for use cases, nestjs-cli for scaffolding and CLI operations.
 - React: react-vite for setup, react-architecture for structure/review, react-feature for user flows, design-system for visual work including prototypes.
+- UI/UX: ui-ux-research before new screens, flows, substantial redesigns or requested style changes, across frontend stacks; Mobbin MCP is optional in Claude Code and Codex.
 - Shared profile: strict-typescript for authored TypeScript; api-contracts for public API/client changes; docker-coolify for infrastructure and deployment artifacts.
 - Cross-cutting: domain-modeling for terminology and ADRs; tdd when test-first development is selected; wizard for steps only the human can perform.
 

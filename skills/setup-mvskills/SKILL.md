@@ -57,6 +57,7 @@ as Redis, queues, storage or email is introduced only for a concrete requirement
 | Vite/React scaffold | react-vite |
 | Frontend architecture and feature implementation | react-architecture, react-feature |
 | Theme, tokens, typography and UI prototypes | design-system |
+| New screens/flows, substantial UI redesigns or requested style changes | ui-ux-research (optional Mobbin MCP) |
 | REST schema, generated client and contract checks | api-contracts |
 | Local infrastructure, images and Coolify Compose | docker-coolify |
 

@@ -1,5 +1,9 @@
 {
   "ask-mv": [],
+  "ui-ux-research": [],
+  "prototype": [
+    "ui-ux-research"
+  ],
   "extend-mvskills": [
     "writing-for-agents"
   ],
@@ -15,6 +19,7 @@
     "strict-typescript"
   ],
   "react-vite": [
+    "ui-ux-research",
     "strict-typescript",
     "react-architecture",
     "design-system",
@@ -50,12 +55,14 @@
     "design-system"
   ],
   "react-feature": [
+    "ui-ux-research",
     "react-architecture",
     "design-system",
     "api-contracts",
     "strict-typescript"
   ],
   "design-system": [
+    "ui-ux-research",
     "strict-typescript"
   ]
 }

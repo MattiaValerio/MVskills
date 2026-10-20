@@ -45,6 +45,10 @@ This works whether the user is here to push back or not.
 
 ### 2. Generate radically different variants
 
+Vary structure inside the established visual identity. Initial project styling or
+an explicitly requested style change follows ui-ux-research's user-choice step;
+reuse that decision and research instead of restarting discovery for each variant.
+
 Draft each variant. Hold each one to:
 
 - The page's purpose and the data it has access to.

@@ -87,14 +87,24 @@ colours. CLI commands, init options, customization rules and dark mode:
 
 ## Setting up or changing the theme
 
+Preserve the project's established visual identity unless the user explicitly asks
+for a different style. A feature or layout redesign alone is not that request.
+For an initial visual direction or an authorized style change, load ui-ux-research
+through the host mechanism or read its installed entrypoint. Reuse its approved
+direction before applying a theme. If unavailable, report the missing skill, present
+directions from supplied/local references and wait for the user's choice. Mobbin is
+optional. Compatible new semantic roles may extend the existing theme without
+restyling it; record shared decisions in the project's design-system documentation.
+
 New app: follow [shadcn](references/shadcn.md) → "Initialize", then replace the generated
 global CSS with [the theme template](assets/theme.css), copy
 [typography.tsx](assets/typography.tsx) to `src/components/` and
 [check-design-tokens.ts](assets/scripts/check-design-tokens.ts) to `scripts/`, and add
 `"check:tokens": "tsx scripts/check-design-tokens.ts"` to the web app's package.json.
 
-Ask the user for brand colour(s), fonts, radius and light/dark preference, or a
-shadcn/create preset code; record the answers in docs/agents/stack.md under a "Design
+Reuse settled brand colour(s), fonts, radius and light/dark preference, or a
+shadcn/create preset code; ask only for missing choices needed to apply the selected
+direction. Record the answers in docs/agents/stack.md under a "Design
 system" heading. Applying a preset: `pnpm dlx shadcn@latest apply <code> --only theme`
 (or `font`), then re-apply the resets and extra tokens from the template if the preset
 overwrote them. Any theme change ends with `check:tokens`, a visual check of light and

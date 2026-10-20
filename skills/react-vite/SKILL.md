@@ -25,7 +25,8 @@ Lay down the skeleton defined by react-architecture: router.tsx with the QueryCl
 router context, routes/__root.tsx, lib/api-client.ts and lib/api-error.ts, lib/query-client.ts,
 components/feedback route states, and its .dependency-cruiser.cjs, proving its rules
 fail on a planted violation as react-architecture describes. Then initialize the
-design system per design-system: shadcn init, theme.css from its template, typography
+design system per design-system, which routes initial visual choices through
+ui-ux-research and reuses the user's selected direction: shadcn init, theme.css from its template, typography
 components, check-design-tokens script. Package scripts: dev, build, typecheck, lint,
 test, routes:generate, check:tokens, check:arch.
 

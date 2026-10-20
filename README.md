@@ -51,7 +51,7 @@ Updating this bundle follows MVskills releases. Importing changes from Matt into
 
 ## Skills catalog
 
-The catalog covers all 37 distributable skills in `skills/`. Each skill name links to
+The catalog covers the distributable skills in `skills/`. Each skill name links to
 its instructions. **What it does** describes the outcome; **How it works** describes
 the procedure or rules; **When to use it** identifies the task that should trigger it.
 Matt's workflows coordinate development; custom profiles define technical execution.
@@ -115,6 +115,7 @@ Use the skills relevant to the task. An ordinary edit does not need every workfl
 
 | Skill | What it does | How it works | When to use it |
 | --- | --- | --- | --- |
+| [ui-ux-research](skills/ui-ux-research/SKILL.md) | Adapts UI/UX references to the product across frontend stacks. | Uses optional Mobbin MCP in Claude Code or Codex, bounded research and local/web fallback while preserving the established design. | New screens, flows, substantial redesigns or an explicitly requested style change. |
 | [react-vite](skills/react-vite/SKILL.md) | Scaffolds or reconciles the frontend application. | Configures Vite, typed routing, providers, env, API proxy, design system and initial connection tests. | Creating a frontend or changing its build, dev server or test setup. |
 | [react-architecture](skills/react-architecture/SKILL.md) | Defines frontend structure, navigation and data ownership. | Uses isolated feature folders, thin file routes, validated URL state and shared TanStack Query factories. | Writing, moving, refactoring or reviewing frontend files, routes and server state. |
 | [react-feature](skills/react-feature/SKILL.md) | Implements a screen or user flow against our API contract. | Frames the screen, checks endpoints, wires queries/mutations, builds UI states and runs tests and validation. | Adding or changing a page, form, interaction or frontend feature. |
@@ -154,6 +155,19 @@ are added for concrete requirements.
 `react-feature` owns implementation, and `design-system` owns visual conventions.
 The same rules reach implementers and Standards reviewers through the selected profile.
 TDD supplies test-first ordering when selected.
+
+`ui-ux-research` supplies reference-based decisions before new screens/flows and
+substantial redesigns, including prototypes. Existing visual identity stays constant
+unless the user explicitly requests a different style. New projects and requested
+style changes require a chosen direction before implementation. Research notes join
+the feature brief; shared visual decisions remain in design-system documentation.
+
+Mobbin MCP is optional agent tooling for **both Claude Code and Codex**, configured
+and authenticated separately from the application. Installing skills does not connect
+the server. See [client setup and prerequisites](skills/ui-ux-research/references/mobbin.md).
+The agent discovers live capabilities, uses standard search and continues with local
+evidence when unavailable. Web research is used only for a remaining UX question,
+within the same search budget. Deep Search requires an explicit user request.
 
 The browser calls our backend exclusively. External API integration, credentials,
 validation and response adaptation belong on the server. MSW simulates our endpoints

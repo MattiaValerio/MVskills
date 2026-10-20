@@ -36,6 +36,13 @@ title before writing the brief. Reuse fetched contents supplied by the coordinat
 resolve ambiguous references with the user. With tracking explicitly disabled, use
 the supplied local spec or brief without creating or fetching external issues.
 
+For new screens, flows or substantial redesigns, load ui-ux-research through the
+host mechanism or read its installed entrypoint before finalizing UI decisions.
+Reuse its research note and chosen style; local visual fixes use existing patterns.
+If that skill is missing, report it and manually inspect existing screens and supplied
+references, preserving the established style and recording the adapted flow in the
+brief. Missing Mobbin alone is handled by the research fallback, not a blocked phase.
+
 Write a screen brief before touching code (reply or ticket):
 
 ```
@@ -129,6 +136,7 @@ depcruise exclusions; if a rule seems wrong for this case, stop and explain to t
 Screen brief (final), routes added/changed, files created/modified, shadcn components
 added, new tokens/variants (with reason), endpoints used, validation output, deferred items.
 Include the ticket title/source, selected seams and coverage limits. Return these
+with the UI/UX research note (or local-fix skip reason) and selected visual direction
 to `implement` or `implement-spec` when it coordinates the work, so the final
 Standards/Spec review runs once. Otherwise, when review is part of the task, invoke
 `code-review` with the baseline, brief and profile entrypoints as well as repository

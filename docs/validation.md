@@ -1,5 +1,31 @@
 # Validation
 
+## Optional UI/UX research (2026-10-20)
+
+Added ui-ux-research, frontend/prototype routing and separate Mobbin setup guidance
+for Claude Code and Codex. Local structural checks passed: pnpm check,
+pnpm check:typing, pnpm check:frontend, discovery of 37 current entrypoints and
+pnpm check:install. The installation fixture compares every skill resource
+byte-for-byte in both .agents/skills and .claude/skills, including the new reference.
+The skill-creator quick validator passed using an isolated uv environment with
+PyYAML (the default Python environment lacks it).
+
+These checks establish packaging and structural validity, not live Mobbin access.
+No Mobbin tools were exposed in this session. Actual OAuth login, search schemas,
+image inspection, rate-limit handling and end-to-end execution in Claude Code/Codex
+remain unverified; client setup instructions were checked against official sources.
+No user-level MCP settings or credentials were changed.
+
+An independent agent exercised two simulated briefs without contacting services:
+a new React onboarding with an available flow reference, and an existing Vue
+invoices screen without Mobbin, web or image tools. The former retained the initial
+style-choice gate and distinguished reference steps from product requirements; the
+latter reused local conventions without a framework migration or an access blocker.
+The exercise identified three instruction clarifications, now applied: inspect
+available previews, mark irrelevant UI states as non-applicable, and reuse settled
+theme choices instead of interviewing again. These are simulated instruction checks,
+not generated-project, browser or live MCP acceptance tests.
+
 Structural and installer smoke checks establish discovery/installation, not successful agent execution.
 
 2026-10-01: pnpm check passed for 30 skill entrypoints. Installer discovery found
